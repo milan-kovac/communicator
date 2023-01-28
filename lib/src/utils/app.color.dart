@@ -8,4 +8,5 @@ class AppColors {
   static const ashes = Color(0xFFbdbfc1);
   static const fadeddGray = Color(0xfff4f6f8);
   static const gray = Color(0xFFc2c4c6);
+  static const fadedBlack = Color(0xFF1c1c22);
 }
