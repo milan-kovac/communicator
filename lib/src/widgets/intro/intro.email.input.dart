@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../utils/app.color.dart';
 import '../../utils/validators.dart';
 
@@ -16,22 +15,22 @@ class IntroEmailInput extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) => Validators(value: value.toString()).isValidEmail() ? null : 'Унесите исправну мејл адресу',
       cursorColor: Colors.black,
-      style: TextStyle(
+      style: const TextStyle(
           decoration: TextDecoration.none,
           decorationColor: Colors.white,
           fontSize: 14),
       decoration: InputDecoration(
-        errorStyle: TextStyle(
+        errorStyle: const TextStyle(
           fontSize: 12,
         ),
-        contentPadding: EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.all(20),
         filled: true,
-        fillColor: AppColors.fadeddGray,
+        fillColor: AppColors.washedOutBlue,
         border: const UnderlineInputBorder(),
-        hintText: '____________',
+        hintText: '_ _ _ _ _ _ _ _ _ _ _ _',
         prefixIcon: Icon(Icons.alternate_email_outlined, color: FocusScope.of(context).isFirstFocus ? Colors.black : Colors.black),
-        hintStyle: TextStyle(
-            color: AppColors.gray,
+        hintStyle: const TextStyle(
+            color: Colors.black,
             fontSize: 14,
             fontWeight: FontWeight.bold,
             letterSpacing: 0.2),

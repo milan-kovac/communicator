@@ -1,3 +1,4 @@
+import 'package:communicator/src/pages/home.page.dart';
 import 'package:communicator/src/pages/intro.page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,9 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Communicator',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-         fontFamily: GoogleFonts.robotoSlab().fontFamily
+         fontFamily: GoogleFonts.roboto().fontFamily
       ),
-      home: IntroPage()
+      home: HomePage()
     );
   }
 }
