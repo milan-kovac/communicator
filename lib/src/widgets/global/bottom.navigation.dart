@@ -11,20 +11,22 @@ class BottomNavigation extends StatelessWidget {
   const BottomNavigation({super.key, required this.pageIndex});
   @override
   Widget build(BuildContext context) {
-
-  void onTap(value)  {
-    switch (value) {
-      case 0:
-      RouterHelper(context: context, where: const CalendarPage()).goFadeAway();
-      break;
-      case 1:
-      RouterHelper(context: context, where: const HomePage()).goFadeAway();
-      break;
-      case 2:
-      RouterHelper(context: context, where: const LearningPage()).goFadeAway();
-      break;
+    void onTap(value) {
+      switch (value) {
+        case 0:
+          RouterHelper(context: context, where: const CalendarPage())
+              .goFadeAway();
+          break;
+        case 1:
+          RouterHelper(context: context, where: const HomePage()).goFadeAway();
+          break;
+        case 2:
+          RouterHelper(context: context, where: const LearningPage())
+              .goFadeAway();
+          break;
+      }
     }
-  }
+
     return SizedBox(
       height: 50,
       child: Row(
@@ -36,40 +38,53 @@ class BottomNavigation extends StatelessWidget {
             child: GestureDetector(
               onTap: (() => onTap(0)),
               child: Container(
-                 height: 50,
-                color: pageIndex == 0 ? Colors.white : AppColors.fadedBlack,
-                child: Icon(FontAwesomeIcons.calendar,
-                    size: 30,
-                    color: pageIndex == 0 ? AppColors.fadedBlack : Colors.white),
+                height: 50,
+                color: pageIndex == 0 ? Colors.white : AppColors.darkGrean,
+                child: Icon(FontAwesomeIcons.calendarCheck,
+                    size: 25,
+                    color: pageIndex == 0 ? AppColors.darkGrean : Colors.white),
               ),
             ),
           ),
-           Expanded(
+          Expanded(
             flex: 3,
-             child: GestureDetector(
-               onTap: (() => onTap(1)),
-               child: Container(
+            child: GestureDetector(
+              onTap: (() => onTap(1)),
+              child: Container(
                 height: 50,
-                color: pageIndex == 1 ? Colors.white : AppColors.fadedBlack,
-                child: Icon(FontAwesomeIcons.star,
-                    size: 30,
-                    color: pageIndex == 1 ? AppColors.fadedBlack : Colors.white),
-                       ),
-             ),
-           ),
-           Expanded(
+                color: pageIndex == 1 ? Colors.white : AppColors.darkGrean,
+                child: Icon(FontAwesomeIcons.laptopFile,
+                    size: 25,
+                    color: pageIndex == 1 ? AppColors.darkGrean : Colors.white),
+              ),
+            ),
+          ),
+          Expanded(
             flex: 3,
-             child: GestureDetector(
-               onTap: (() => onTap(2)),
-               child: Container(
+            child: GestureDetector(
+              onTap: (() => onTap(2)),
+              child: Container(
                 height: 50,
-                color: pageIndex == 2 ? Colors.white : AppColors.fadedBlack,
-                child: Icon(FontAwesomeIcons.brain,
-                    size: 30,
-                    color: pageIndex == 2 ? AppColors.fadedBlack: Colors.white),
-                       ),
-             ),
-           )
+                color: pageIndex == 2 ? Colors.white : AppColors.darkGrean,
+                child: Icon(FontAwesomeIcons.chalkboardUser,
+                    size: 25,
+                    color: pageIndex == 2 ? AppColors.darkGrean : Colors.white),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: GestureDetector(
+              onTap: (() => onTap(2)),
+              child: Container(
+                height: 50,
+                color: pageIndex == 3 ? Colors.white : AppColors.darkGrean,
+                child: Icon(FontAwesomeIcons.info,
+                    size: 25,
+                    color: pageIndex == 3 ? AppColors.darkGrean : Colors.white),
+              ),
+            ),
+          )
         ],
       ),
     );

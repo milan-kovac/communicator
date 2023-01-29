@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Communicator',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-         fontFamily: GoogleFonts.roboto().fontFamily
+         fontFamily: GoogleFonts.rubik().fontFamily
       ),
       home: IntroPage()
     );

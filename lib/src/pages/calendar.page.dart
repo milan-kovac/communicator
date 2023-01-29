@@ -21,16 +21,16 @@ class CalendarPage extends StatelessWidget {
               calendarType: CalendarType.GREGORIAN),
           calendarOptions: CalendarOptions(viewType: ViewType.DAILY),
           dayOptions: DayOptions(
-              selectedBackgroundColor: AppColors.darkPurple,
-              weekDaySelectedColor: Colors.red),
+              selectedBackgroundColor: AppColors.darkGrean,
+              weekDaySelectedColor: AppColors.darkGrean),
           headerOptions: HeaderOptions(monthStringType: MonthStringTypes.FULL),
           middleWidget: (p0) => Container(
-            color: AppColors.washedOutBlue,
+            color: AppColors.lightGrean,
             width: double.infinity,
             height: 50,
             child: const Center(
               child: FaIcon(
-                FontAwesomeIcons.calendarPlus,
+                FontAwesomeIcons.circlePlus,
                 size: 30,
               ),
             ),

@@ -13,7 +13,9 @@ class IntroEmailInput extends StatelessWidget {
       focusNode: textFieldFocusNode,
       controller: inputController,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value) => Validators(value: value.toString()).isValidEmail() ? null : 'Унесите исправну мејл адресу',
+      validator: (value) => Validators(value: value.toString()).isValidEmail()
+          ? null
+          : 'Унесите исправну мејл адресу',
       cursorColor: Colors.black,
       style: const TextStyle(
           decoration: TextDecoration.none,
@@ -25,25 +27,26 @@ class IntroEmailInput extends StatelessWidget {
         ),
         contentPadding: const EdgeInsets.all(20),
         filled: true,
-        fillColor: AppColors.washedOutBlue,
+        fillColor: AppColors.backgroundColor,
         border: const UnderlineInputBorder(),
-        hintText: '_ _ _ _ _ _ _ _ _ _ _ _',
-        prefixIcon: Icon(Icons.alternate_email_outlined, color: FocusScope.of(context).isFirstFocus ? Colors.black : Colors.black),
+        hintText: 'комуникатор@гмаил.цом',
+        suffixIcon: Icon(Icons.email_outlined,
+            color: FocusScope.of(context).isFirstFocus
+                ? AppColors.darkGrean
+                : AppColors.darkGrean),
         hintStyle: const TextStyle(
             color: Colors.black,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
             letterSpacing: 0.2),
-        enabledBorder: OutlineInputBorder(
-            borderSide:
-                const BorderSide(width: 0.2, color: Colors.transparent),
-            borderRadius: BorderRadius.circular(8)),
-        focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(width: 0.2, color: Colors.grey),
-            borderRadius: BorderRadius.circular(8)),
-        errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(width: 1, color: Colors.red),
-          borderRadius: BorderRadius.circular(8),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.darkGrean),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.darkGrean),
+        ),
+        errorBorder: const OutlineInputBorder(
+          borderSide:  BorderSide(width: 1, color: Colors.red),
         ),
       ),
     );
