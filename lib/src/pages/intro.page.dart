@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:communicator/src/services/auth.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:communicator/src/utils/router.helper.dart';
 import 'package:communicator/src/widgets/intro/intro.email.input.dart';
@@ -19,7 +20,9 @@ class _IntroPageState extends State<IntroPage> {
   final inputController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   bool formIsValid = false;
-  Widget _buildImage(String assetName, [double width = 350]) {
+  String email = '';
+  
+  Widget buildImage(String assetName, [double width = 350]) {
     return Image.asset('assets/images/$assetName', width: width);
   }
 
@@ -45,15 +48,15 @@ class _IntroPageState extends State<IntroPage> {
             title: "",
             bodyWidget: const Text(
                 'Апликација комуникатор је моћан алат дизајниран да помогне особама са спектром аутизма да побољшају своје комуникацијске вештине. Са корисничким интерфејсом и широким спектром функција, апликација олакшава корисницима да креирају и деле сопствене друштвене приче, граде и вежбају своје језичке вештине, па чак и комуницирају са другима користећи комуникационе системе засноване на сликама. Без обзира да ли сте родитељ, неговатељ или терапеут, апликација комуникатор је суштинско средство за помоћ особама са спектром аутизма да побољшају своје комуникацијске и друштвене вештине.'),
-            image: _buildImage('intro1.png'),
+            image: buildImage('intro1.png'),
           ),
-          PageViewModel(
-            title: '',
-            bodyWidget: const Text(
-              "Aпликација је дизајнирана да помогне породицама са децом из спектра аутизма да управљају својим дневним рутинама и подрже њихово учење и друштвени развој. Апликација омогућава родитељима и старатељима да креирају прилагођене распореде и организују дан свог детета, као и да креирају друштвене приче и шаблоне за учење како би подржали развој свог детета.",
-            ),
-            image: _buildImage('intro2.png'),
-          ),
+          // PageViewModel(
+          //   title: '',
+          //   bodyWidget: const Text(
+          //     "Aпликација је дизајнирана да помогне породицама са децом из спектра аутизма да управљају својим дневним рутинама и подрже њихово учење и друштвени развој. Апликација омогућава родитељима и старатељима да креирају прилагођене распореде и организују дан свог детета, као и да креирају друштвене приче и шаблоне за учење како би подржали развој свог детета.",
+          //   ),
+          //   image: buildImage('intro2.png'),
+          // ),
           PageViewModel(
             titleWidget: const Align(
               alignment: Alignment.topLeft,
@@ -67,13 +70,16 @@ class _IntroPageState extends State<IntroPage> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 onChanged: () => setState(() {
                       formIsValid = formKey.currentState!.validate();
-                      log(formIsValid.toString());
+                      email = inputController.text;
                     }),
                 child: IntroEmailInput(inputController: inputController)),
-            image: _buildImage('intro3.png'),
+            image: buildImage('intro3.png'),
           ),
         ],
-        onDone: () => RouterHelper(context: context, where: const HomePage()).goFadeAway(),
+        onDone: () => {
+          AuthService.anonymousLogin(email)
+          //RouterHelper(context: context, where: const HomePage()).goFadeAway()
+        },
         back: const Icon(Icons.arrow_back),
         skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
         next: const Icon(

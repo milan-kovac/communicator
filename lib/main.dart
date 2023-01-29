@@ -1,8 +1,13 @@
-import 'package:communicator/src/pages/home.page.dart';
-import 'package:communicator/src/pages/intro.page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-void main() {
+
+import 'package:communicator/src/pages/home.page.dart';
+import 'package:communicator/src/pages/intro.page.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -18,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
          fontFamily: GoogleFonts.roboto().fontFamily
       ),
-      home: HomePage()
+      home: IntroPage()
     );
   }
 }
