@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:communicator/src/services/auth.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:communicator/src/utils/router.helper.dart';
@@ -82,8 +81,7 @@ class _IntroPageState extends State<IntroPage> {
           ),
         ],
         onDone: () => {
-          AuthService.anonymousLogin(email),
-          RouterHelper(context: context, where: const HomePage()).goFadeAway()
+          AuthService.anonymousLogin(email).then((value) => RouterHelper(context: context, where: const HomePage()).goFadeAway()),
         },
         back: const Icon(Icons.arrow_back),
         next: const Icon(
