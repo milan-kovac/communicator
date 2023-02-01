@@ -1,7 +1,5 @@
-import 'package:communicator/src/widgets/global/bottom.navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import '../widgets/global/custom.app.bar.dart';
 
 class LearningPage extends StatelessWidget {
   const LearningPage({super.key});
@@ -9,10 +7,10 @@ class LearningPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      appBar: PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
       body: Center(
         child: Text('LERANING PAGE'),
       ),
-      bottomNavigationBar: BottomNavigation(pageIndex: 2),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:communicator/src/utils/app.color.dart';
-import 'package:communicator/src/widgets/global/bottom.navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_event_calendar/flutter_event_calendar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../widgets/global/custom.app.bar.dart';
 
 class CalendarPage extends StatelessWidget {
   const CalendarPage({super.key});
@@ -10,6 +11,7 @@ class CalendarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
       body: SafeArea(
         child: EventCalendar(
           calendarType: CalendarType.GREGORIAN,
@@ -83,7 +85,6 @@ class CalendarPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavigation(pageIndex: 0),
     );
   }
 }

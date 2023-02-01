@@ -25,7 +25,7 @@ class UserService {
       dynamic data = jsonEncode(user.toJson());
       await prefs.setString('user', data);
     } catch (error) {
-      log('addUser: $saveUserLocal');
+      log('saveUserLocal: $error');
       rethrow;
     }
   }
@@ -36,7 +36,7 @@ class UserService {
       final userData = json.decode(prefs.getString('user') ?? "");
       return UserModel.fromJson(userData);
     } catch (error) {
-      log('addUser: $getLocalUser');
+      log('getLocalUser: $error');
       rethrow;
     }
   }

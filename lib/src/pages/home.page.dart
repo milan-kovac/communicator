@@ -1,4 +1,5 @@
-import 'package:communicator/src/widgets/global/bottom.navigation.dart';
+import 'package:communicator/src/widgets/global/custom.app.bar.dart';
+import 'package:communicator/src/widgets/global/sidebar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,10 +8,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      appBar: PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
       body: Center(
         child: Text('HOME PAGE'),
       ),
-      bottomNavigationBar: BottomNavigation(pageIndex: 1),
+      drawer: Sidebar(),
     );
   }
 }
