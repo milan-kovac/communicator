@@ -24,7 +24,7 @@ class _IntroPageState extends State<IntroPage> {
   String email = '';
 
   Widget buildImage(String assetName, [double width = 350]) {
-    return Container(
+    return SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Image.asset('assets/images/$assetName', width: width));
@@ -82,6 +82,7 @@ class _IntroPageState extends State<IntroPage> {
         ],
         onDone: () => {
           AuthService.anonymousLogin(email).then((value) => RouterHelper(context: context, where: const HomePage()).goFadeAway()),
+          FocusManager.instance.primaryFocus?.unfocus()
         },
         back: const Icon(Icons.arrow_back),
         next: const Icon(
