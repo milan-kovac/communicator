@@ -9,7 +9,8 @@ class UserService {
 
   static Future addUser(UserModel user) async {
     try {
-      DocumentReference<Map<String, dynamic>> users = FirebaseFirestore.instance.doc('users/$user.id');
+      var id = user.id;
+      DocumentReference<Map<String, dynamic>> users = FirebaseFirestore.instance.doc('users/$id');
       await users.set({'id': user.id, 'email': user.email});
     } catch (error) {
       log('addUser: $error');
@@ -37,6 +38,16 @@ class UserService {
       return UserModel.fromJson(userData);
     } catch (error) {
       log('getLocalUser: $error');
+      rethrow;
+    }
+  }
+
+    static Future<void> deleteLocalUser() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.remove('user');
+    } catch (error) {
+      log('deleteLocalUser: $error');
       rethrow;
     }
   }

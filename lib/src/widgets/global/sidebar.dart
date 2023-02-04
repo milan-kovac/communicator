@@ -1,5 +1,6 @@
 import 'package:communicator/src/pages/home.page.dart';
 import 'package:communicator/src/pages/learning.page.dart';
+import 'package:communicator/src/services/auth.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -103,19 +104,19 @@ class Sidebar extends StatelessWidget {
               ),
             ]),
           ),
-          Container(
-              child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Column(
-                    children: const [
-                      Divider(),
-                      ListTile(
-                          title: Text(
-                        'Одјава',
-                        style: TextStyle(fontSize: 18),
-                      ))
-                    ],
-                  ))),
+          Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Column(
+                children: [
+                  ListTile(
+                    onTap: () => AuthService.logOut(context),
+                    trailing: TextButton.icon(
+                        onPressed: null,
+                        icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket),
+                        label: const Text('Одјава', style: TextStyle( fontSize: 15),)),
+                  )
+                ],
+              )),
         ],
       ),
     );
