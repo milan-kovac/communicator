@@ -33,7 +33,27 @@ class _AddEventModalState extends State<AddEventModal> {
                   color: AppColors.darkGrean),
               margin: const EdgeInsets.only(top: 20, bottom: 20),
             ),
-            //
+            const Padding(
+              padding: EdgeInsets.all(30),
+              child: TextField(
+                cursorColor: AppColors.darkGrean,
+                style: TextStyle(
+                    decorationThickness: 0,
+                    decoration: TextDecoration.none,
+                    color: AppColors.darkGrean),
+                decoration: InputDecoration(
+                  hintText: "Опис...",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: AppColors.darkGrean, width: 3),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: AppColors.darkGrean, width: 3),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(30),
               child: Row(
@@ -215,6 +235,33 @@ class _AddEventModalState extends State<AddEventModal> {
                                       size: 30))))),
                 ],
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: TextButton.icon(
+                    onPressed: null,
+                    icon: const FaIcon(
+                      FontAwesomeIcons.floppyDisk,
+                      color: AppColors.darkGrean,
+                    ),
+                    label: const Text(
+                      'Сачувај',
+                      style: TextStyle(
+                          color: AppColors.darkGrean,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                    side: const BorderSide(
+                                        color: AppColors.darkGrean)))),
+                  )),
             )
           ],
         ));

@@ -46,7 +46,7 @@ class CalendarPage extends StatelessWidget {
               )
             },
             child: Container(
-              color: null,
+              color: AppColors.lightGrean,
               width: double.infinity,
               height: 50,
               child: const Center(
