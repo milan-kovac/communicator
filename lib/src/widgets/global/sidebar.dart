@@ -21,7 +21,8 @@ class Sidebar extends StatelessWidget {
             decoration: const BoxDecoration(
               color: AppColors.backgroundColor,
             ),
-            child: Image.asset('assets/images/logo.png'),
+            padding: const EdgeInsets.all(0),
+            child: Image.asset('assets/images/logo.png',),
           ),
           Expanded(
             child: Column(children: <Widget>[

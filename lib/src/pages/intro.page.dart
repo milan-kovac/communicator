@@ -17,9 +17,10 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
-  final introKey = GlobalKey<IntroductionScreenState>();
+  var introKey = null;
+  var formKey = null;
   final inputController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+
   bool formIsValid = false;
   String email = '';
 
@@ -29,74 +30,83 @@ class _IntroPageState extends State<IntroPage> {
         width: double.infinity,
         child: Image.asset('assets/images/$assetName', width: width));
   }
+  @override
+  void initState() {
+    setState(() {
+      introKey = GlobalKey<IntroductionScreenState>();
+      formKey = GlobalKey<FormState>();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: IntroductionScreen(
-        key: introKey,
-        globalBackgroundColor: AppColors.backgroundColor,
-        allowImplicitScrolling: true,
-        autoScrollDuration: 3000,
-        showDoneButton: formIsValid,
-        dotsDecorator: DotsDecorator(
-            size: const Size.square(10.0),
-            activeSize: const Size(20.0, 10.0),
-            activeColor: AppColors.darkGrean,
-            color: AppColors.washedOutBlue,
-            spacing: const EdgeInsets.symmetric(horizontal: 3.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0))),
-        pages: [
-          PageViewModel(
-            title: '',
-            bodyWidget: const IntroItems(),
-            image: buildImage('intro1.png'),
-            decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))
+    return Scaffold(
+      body: SafeArea(
+        child: IntroductionScreen(
+          key: introKey,
+          globalBackgroundColor: AppColors.backgroundColor,
+          allowImplicitScrolling: false,
+          showDoneButton: formIsValid,
+          dotsDecorator: DotsDecorator(
+              size: const Size.square(10.0),
+              activeSize: const Size(20.0, 10.0),
+              activeColor: AppColors.darkGrean,
+              color: AppColors.washedOutBlue,
+              spacing: const EdgeInsets.symmetric(horizontal: 3.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0))),
+          pages: [
+            PageViewModel(
+              title: '',
+              bodyWidget: const IntroItems(),
+              image: buildImage('intro1.png'),
+              decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))
+            ),
+            PageViewModel(
+              title: "",
+              bodyWidget: const IntroAbout(),
+              image: buildImage('intro2.png'),
+              decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))
+            ),
+            PageViewModel(
+              titleWidget: const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Унесите мејл',
+                    style: TextStyle(fontSize: 20),
+                    textAlign: TextAlign.left,
+                  )),
+              bodyWidget: Form(
+                  key: formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  onChanged: () => setState(() {
+                        formIsValid = formKey.currentState!.validate();
+                        email = inputController.text;
+                      }),
+                  child: IntroEmailInput(inputController: inputController)),
+              image: buildImage('intro3.png'),
+              decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))
+            ),
+          ],
+          onDone: () {
+            FocusScope.of(context).unfocus();
+            AuthService.anonymousLogin(email).then((value) => RouterHelper(context: context, where: const HomePage()).goFadeAway());
+          },
+          back: const Icon(Icons.arrow_back),
+          next: const Icon(
+            Icons.chevron_right_sharp,
+            color: AppColors.darkGrean,
+            size: 50,
           ),
-          PageViewModel(
-            title: "",
-            bodyWidget: const IntroAbout(),
-            image: buildImage('intro2.png'),
-            decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))
+          done: const Icon(
+            Icons.done_all_sharp,
+            color: AppColors.darkGrean,
+            size: 40,
           ),
-          PageViewModel(
-            titleWidget: const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Унесите мејл',
-                  style: TextStyle(fontSize: 20),
-                  textAlign: TextAlign.left,
-                )),
-            bodyWidget: Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                onChanged: () => setState(() {
-                      formIsValid = formKey.currentState!.validate();
-                      email = inputController.text;
-                    }),
-                child: IntroEmailInput(inputController: inputController)),
-            image: buildImage('intro3.png'),
-            decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))
-          ),
-        ],
-        onDone: () => {
-          AuthService.anonymousLogin(email).then((value) => RouterHelper(context: context, where: const HomePage()).goFadeAway()),
-          FocusManager.instance.primaryFocus?.unfocus()
-        },
-        back: const Icon(Icons.arrow_back),
-        next: const Icon(
-          Icons.chevron_right_sharp,
-          color: AppColors.darkGrean,
-          size: 50,
+          curve: Curves.fastLinearToSlowEaseIn,
+          controlsMargin: const EdgeInsets.all(16),
         ),
-        done: const Icon(
-          Icons.done_all_sharp,
-          color: AppColors.darkGrean,
-          size: 40,
-        ),
-        curve: Curves.fastLinearToSlowEaseIn,
-        controlsMargin: const EdgeInsets.all(16),
       ),
     );
   }

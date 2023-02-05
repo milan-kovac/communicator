@@ -1,8 +1,16 @@
+import 'dart:developer';
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart';
+import '../../services/file.service.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
 class AddEventModal extends StatefulWidget {
   DateTime now = DateTime.now();
   TextEditingController dateController =
@@ -10,7 +18,6 @@ class AddEventModal extends StatefulWidget {
   TextEditingController timeController = TextEditingController(
       text: formatTimeString(TimeOfDay.fromDateTime(DateTime.now())));
   AddEventModal({super.key});
-
   @override
   State<AddEventModal> createState() => _AddEventModalState();
 }
@@ -29,7 +36,7 @@ class _AddEventModalState extends State<AddEventModal> {
               width: 130,
               height: 8,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(4),
                   color: AppColors.darkGrean),
               margin: const EdgeInsets.only(top: 20, bottom: 20),
             ),
@@ -208,17 +215,20 @@ class _AddEventModalState extends State<AddEventModal> {
                 children: [
                   Expanded(
                       flex: 4,
-                      child: DottedBorder(
-                          borderType: BorderType.RRect,
-                          radius: const Radius.circular(8),
-                          dashPattern: [5, 5],
-                          color: AppColors.darkGrean,
-                          strokeWidth: 2,
-                          child: const SizedBox(
-                              height: 100,
-                              child: Center(
-                                  child: FaIcon(FontAwesomeIcons.paperclip,
-                                      size: 30))))),
+                      child: GestureDetector(
+                        onTap: () => getFromGallery(),
+                        child: DottedBorder(
+                            borderType: BorderType.RRect,
+                            radius: const Radius.circular(8),
+                            dashPattern: const [5, 5],
+                            color: AppColors.darkGrean,
+                            strokeWidth: 2,
+                            child: const SizedBox(
+                                height: 100,
+                                child: Center(
+                                    child: FaIcon(FontAwesomeIcons.paperclip,
+                                        size: 30)))),
+                      )),
                   const Expanded(flex: 4, child: SizedBox()),
                   Expanded(
                       flex: 4,
@@ -275,3 +285,12 @@ String formatDataString(DateTime date) {
 String formatTimeString(TimeOfDay time) {
   return '${time.hour}:${time.minute}';
 }
+
+Future<File?> getFromGallery() async {
+  final ImagePicker picker = ImagePicker();
+  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  if (pickedFile != null) {
+    return File(pickedFile.path);
+  }
+}
+

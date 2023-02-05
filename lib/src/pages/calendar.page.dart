@@ -84,7 +84,7 @@ class CalendarPage extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.topRight,
                         child: Container(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           height: 300,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

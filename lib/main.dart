@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Communicator',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: GoogleFonts.rubik().fontFamily),
-        localizationsDelegates: [
+        theme: ThemeData(fontFamily: GoogleFonts.manrope().fontFamily),
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: [
+        supportedLocales: const [
           Locale('sr', 'SRB'),
         ],
         home: FutureBuilder(

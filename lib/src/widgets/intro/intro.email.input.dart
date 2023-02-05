@@ -8,9 +8,7 @@ class IntroEmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textFieldFocusNode = FocusNode();
     return TextFormField(
-      focusNode: textFieldFocusNode,
       controller: inputController,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) => Validators(value: value.toString()).isValidEmail()
