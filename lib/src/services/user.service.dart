@@ -5,8 +5,6 @@ import 'package:communicator/src/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
-
-
   static Future addUser(UserModel user) async {
     try {
       var id = user.id;
@@ -17,8 +15,6 @@ class UserService {
       rethrow;
     }
   }
-
-
 
   static Future<void> saveUserLocal(UserModel user) async {
     try {
@@ -42,7 +38,7 @@ class UserService {
     }
   }
 
-    static Future<void> deleteLocalUser() async {
+  static Future<void> deleteLocalUser() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       prefs.remove('user');

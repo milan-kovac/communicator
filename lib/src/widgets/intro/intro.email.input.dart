@@ -11,14 +11,9 @@ class IntroEmailInput extends StatelessWidget {
     return TextFormField(
       controller: inputController,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value) => Validators(value: value.toString()).isValidEmail()
-          ? null
-          : 'Унесите исправну мејл адресу',
+      validator: (value) => Validators(value: value.toString()).isValidEmail() ? null : 'Унесите исправну мејл адресу',
       cursorColor: Colors.black,
-      style: const TextStyle(
-          decoration: TextDecoration.none,
-          decorationColor: Colors.white,
-          fontSize: 14),
+      style: const TextStyle(decoration: TextDecoration.none, decorationColor: Colors.white, fontSize: 14),
       decoration: InputDecoration(
         errorStyle: const TextStyle(
           fontSize: 12,
@@ -28,15 +23,8 @@ class IntroEmailInput extends StatelessWidget {
         fillColor: AppColors.backgroundColor,
         border: const UnderlineInputBorder(),
         hintText: 'комуникатор@гмаил.цом',
-        suffixIcon: Icon(Icons.email_outlined,
-            color: FocusScope.of(context).isFirstFocus
-                ? AppColors.darkGrean
-                : AppColors.darkGrean),
-        hintStyle: const TextStyle(
-            color: Colors.black,
-            fontSize: 14,
-            fontStyle: FontStyle.italic,
-            letterSpacing: 0.2),
+        suffixIcon: Icon(Icons.email_outlined, color: FocusScope.of(context).isFirstFocus ? AppColors.darkGrean : AppColors.darkGrean),
+        hintStyle: const TextStyle(color: Colors.black, fontSize: 14, fontStyle: FontStyle.italic, letterSpacing: 0.2),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.darkGrean),
         ),
@@ -44,7 +32,7 @@ class IntroEmailInput extends StatelessWidget {
           borderSide: BorderSide(color: AppColors.darkGrean),
         ),
         errorBorder: const OutlineInputBorder(
-          borderSide:  BorderSide(width: 1, color: Colors.red),
+          borderSide: BorderSide(width: 1, color: Colors.red),
         ),
       ),
     );

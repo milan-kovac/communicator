@@ -11,7 +11,10 @@ class CustomAppBar extends StatelessWidget {
         elevation: 5,
         backgroundColor: AppColors.backgroundColor,
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.bars, size: 28,),
+          icon: const FaIcon(
+            FontAwesomeIcons.bars,
+            size: 28,
+          ),
           color: AppColors.darkGrean,
           onPressed: () => Scaffold.of(context).openDrawer(),
         ));

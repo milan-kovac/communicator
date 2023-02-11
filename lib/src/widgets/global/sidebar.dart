@@ -22,7 +22,9 @@ class Sidebar extends StatelessWidget {
               color: AppColors.backgroundColor,
             ),
             padding: const EdgeInsets.all(0),
-            child: Image.asset('assets/images/logo.png',),
+            child: Image.asset(
+              'assets/images/logo.png',
+            ),
           ),
           Expanded(
             child: Column(children: <Widget>[
@@ -37,8 +39,7 @@ class Sidebar extends StatelessWidget {
                   color: AppColors.darkGrean,
                 ),
                 onTap: () {
-                  RouterHelper(context: context, where: const HomePage())
-                      .goFadeAway();
+                  RouterHelper(context: context, where: const HomePage()).goFadeAway();
                 },
               ),
               ListTile(
@@ -52,8 +53,7 @@ class Sidebar extends StatelessWidget {
                   color: AppColors.darkGrean,
                 ),
                 onTap: () {
-                  RouterHelper(context: context, where: const CalendarPage())
-                      .goFadeAway();
+                  RouterHelper(context: context, where: const CalendarPage()).goFadeAway();
                 },
               ),
               ListTile(
@@ -67,8 +67,7 @@ class Sidebar extends StatelessWidget {
                   color: AppColors.darkGrean,
                 ),
                 onTap: () {
-                  RouterHelper(context: context, where: const LearningPage())
-                      .goFadeAway();
+                  RouterHelper(context: context, where: const LearningPage()).goFadeAway();
                 },
               ),
               ListTile(
@@ -114,7 +113,10 @@ class Sidebar extends StatelessWidget {
                     trailing: TextButton.icon(
                         onPressed: null,
                         icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket),
-                        label: const Text('Одјава', style: TextStyle( fontSize: 15),)),
+                        label: const Text(
+                          'Одјава',
+                          style: TextStyle(fontSize: 15),
+                        )),
                   )
                 ],
               )),

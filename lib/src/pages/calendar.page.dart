@@ -13,25 +13,18 @@ class CalendarPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(50), child: CustomAppBar()),
+      appBar: const PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
       drawer: const Sidebar(),
       body: SafeArea(
         child: EventCalendar(
           calendarType: CalendarType.GREGORIAN,
           calendarLanguage: 'en',
-          dateTime: CalendarDateTime(
-              year: 2023,
-              day: 28,
-              month: 1,
-              calendarType: CalendarType.GREGORIAN),
+          dateTime: CalendarDateTime(year: 2023, day: 28, month: 1, calendarType: CalendarType.GREGORIAN),
           calendarOptions: CalendarOptions(
             viewType: ViewType.DAILY,
           ),
-          dayOptions: DayOptions(
-            disableDaysBeforeNow: false,
-              selectedBackgroundColor: AppColors.darkGrean,
-              weekDaySelectedColor: AppColors.darkGrean),
+          dayOptions:
+              DayOptions(disableDaysBeforeNow: false, selectedBackgroundColor: AppColors.darkGrean, weekDaySelectedColor: AppColors.darkGrean),
           headerOptions: HeaderOptions(monthStringType: MonthStringTypes.SHORT, weekDayStringType: WeekDayStringTypes.SHORT),
           middleWidget: (p0) => GestureDetector(
             onTap: () => {
@@ -40,8 +33,7 @@ class CalendarPage extends StatelessWidget {
                 isScrollControlled: true,
                 builder: (BuildContext context) => AddEventModal(),
                 shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(25.0)),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
                 ),
               )
             },
@@ -65,18 +57,14 @@ class CalendarPage extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         color: AppColors.backgroundColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                        image: const DecorationImage(
-                            image: NetworkImage('https://picsum.photos/1000'),
-                            alignment: Alignment.topLeft),
+                        borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        image: const DecorationImage(image: NetworkImage('https://picsum.photos/1000'), alignment: Alignment.topLeft),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 0,
                             blurRadius: 2,
-                            offset: const Offset(
-                                0, 3), // changes position of shadow
+                            offset: const Offset(0, 3), // changes position of shadow
                           ),
                         ],
                       ),
@@ -93,15 +81,9 @@ class CalendarPage extends StatelessWidget {
                               RichText(
                                 text: const TextSpan(
                                   children: [
-                                    TextSpan(
-                                        text: "12:30 ",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500)),
+                                    TextSpan(text: "12:30 ", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500)),
                                     WidgetSpan(
-                                      child: FaIcon(FontAwesomeIcons.clock,
-                                          size: 16),
+                                      child: FaIcon(FontAwesomeIcons.clock, size: 16),
                                     ),
                                   ],
                                 ),

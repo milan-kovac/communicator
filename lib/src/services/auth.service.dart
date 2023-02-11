@@ -30,8 +30,8 @@ class AuthService {
     }
   }
 
-  static Future<void> logOut(BuildContext context) async{
-     try {
+  static Future<void> logOut(BuildContext context) async {
+    try {
       await UserService.deleteLocalUser();
       RouterHelper(context: context, where: const IntroPage()).goFadeAway();
     } catch (error) {

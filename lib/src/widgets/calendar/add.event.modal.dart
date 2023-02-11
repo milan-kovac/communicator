@@ -1,28 +1,36 @@
-import 'dart:developer';
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:communicator/src/services/event.service.dart';
+import 'package:communicator/src/services/image.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter/services.dart';
-import '../../services/file.service.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:path_provider/path_provider.dart';
+
+// ignore: must_be_immutable
 class AddEventModal extends StatefulWidget {
-  DateTime now = DateTime.now();
-  TextEditingController dateController =
-      TextEditingController(text: formatDataString(DateTime.now()));
-  TextEditingController timeController = TextEditingController(
-      text: formatTimeString(TimeOfDay.fromDateTime(DateTime.now())));
-  AddEventModal({super.key});
+  const AddEventModal({super.key});
   @override
   State<AddEventModal> createState() => _AddEventModalState();
 }
 
 class _AddEventModalState extends State<AddEventModal> {
+  DateTime now = DateTime.now();
+  TextEditingController dateController = TextEditingController(text: formatDataString(DateTime.now()));
+  TextEditingController timeController = TextEditingController(text: formatTimeString(TimeOfDay.fromDateTime(DateTime.now())));
+  TextEditingController descriptionController = TextEditingController();
+  File imageFile = ImageService.loadImageFromAsset('noImage.jpg');
+  bool imageIsPicked = false;
+  DateTime pickedDate = DateTime.now();
+  TimeOfDay pickedTime = TimeOfDay.fromDateTime(DateTime.now());
+  bool spinner = false;
+
+  void setSinner() {
+    setState(() {
+      spinner = !spinner;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,28 +43,22 @@ class _AddEventModalState extends State<AddEventModal> {
             Container(
               width: 130,
               height: 8,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: AppColors.darkGrean),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColors.darkGrean),
               margin: const EdgeInsets.only(top: 20, bottom: 20),
             ),
-            const Padding(
-              padding: EdgeInsets.all(30),
+            Padding(
+              padding: const EdgeInsets.all(30),
               child: TextField(
                 cursorColor: AppColors.darkGrean,
-                style: TextStyle(
-                    decorationThickness: 0,
-                    decoration: TextDecoration.none,
-                    color: AppColors.darkGrean),
-                decoration: InputDecoration(
+                style: const TextStyle(decorationThickness: 0, decoration: TextDecoration.none, color: AppColors.darkGrean),
+                controller: descriptionController,
+                decoration: const InputDecoration(
                   hintText: "Опис...",
                   enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: AppColors.darkGrean, width: 3),
+                    borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: AppColors.darkGrean, width: 3),
+                    borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
                   ),
                 ),
               ),
@@ -70,22 +72,18 @@ class _AddEventModalState extends State<AddEventModal> {
                     flex: 4,
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: widget.dateController.text,
+                        hintText: dateController.text,
                         suffixIcon: IconButton(
                           padding: EdgeInsets.zero,
                           icon: FaIcon(FontAwesomeIcons.calendarPlus,
-                              color: FocusScope.of(context).isFirstFocus
-                                  ? AppColors.darkGrean
-                                  : AppColors.darkGrean),
+                              color: FocusScope.of(context).isFirstFocus ? AppColors.darkGrean : AppColors.darkGrean),
                           onPressed: null,
                         ),
                         enabledBorder: const UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.darkGrean, width: 3),
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
                         ),
                         focusedBorder: const UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.darkGrean, width: 3),
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
                         ),
                       ),
                       readOnly: true,
@@ -102,10 +100,7 @@ class _AddEventModalState extends State<AddEventModal> {
                                 ),
                                 textButtonTheme: TextButtonThemeData(
                                   style: TextButton.styleFrom(
-                                    textStyle: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                    textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -113,21 +108,19 @@ class _AddEventModalState extends State<AddEventModal> {
                             );
                           },
                           helpText: '',
-                          initialDate: widget.now,
-                          firstDate: widget.now,
-                          lastDate: DateTime(widget.now.year + 100),
+                          initialDate: now,
+                          firstDate: now,
+                          lastDate: DateTime(now.year + 100),
                         ).then((pickedDate) {
                           if (pickedDate == null) {
                             return;
                           } else {
                             setState(() {
-                              String dateControllerText =
-                                  formatDataString(pickedDate);
-                              widget.dateController.value = TextEditingValue(
+                              String dateControllerText = formatDataString(pickedDate);
+                              dateController.value = TextEditingValue(
                                 text: dateControllerText,
                                 selection: TextSelection.fromPosition(
-                                  TextPosition(
-                                      offset: dateControllerText.length),
+                                  TextPosition(offset: dateControllerText.length),
                                 ),
                               );
                             });
@@ -142,22 +135,18 @@ class _AddEventModalState extends State<AddEventModal> {
                     flex: 4,
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: widget.timeController.text,
+                        hintText: timeController.text,
                         suffixIcon: IconButton(
                           padding: EdgeInsets.zero,
-                          icon: FaIcon(FontAwesomeIcons.clock,
-                              color: FocusScope.of(context).isFirstFocus
-                                  ? AppColors.darkGrean
-                                  : AppColors.darkGrean),
+                          icon:
+                              FaIcon(FontAwesomeIcons.clock, color: FocusScope.of(context).isFirstFocus ? AppColors.darkGrean : AppColors.darkGrean),
                           onPressed: null,
                         ),
                         enabledBorder: const UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.darkGrean, width: 3),
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
                         ),
                         focusedBorder: const UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: AppColors.darkGrean, width: 3),
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
                         ),
                       ),
                       readOnly: true,
@@ -174,10 +163,7 @@ class _AddEventModalState extends State<AddEventModal> {
                                 ),
                                 textButtonTheme: TextButtonThemeData(
                                   style: TextButton.styleFrom(
-                                    textStyle: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                    textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                                   ),
                                 ),
                               ),
@@ -185,19 +171,17 @@ class _AddEventModalState extends State<AddEventModal> {
                             );
                           },
                           helpText: '',
-                          initialTime: TimeOfDay.fromDateTime(widget.now),
+                          initialTime: TimeOfDay.fromDateTime(now),
                         ).then((pickedTime) {
                           if (pickedTime == null) {
                             return;
                           } else {
                             setState(() {
-                              String timeControllerText =
-                                  formatTimeString(pickedTime);
-                              widget.timeController.value = TextEditingValue(
+                              String timeControllerText = formatTimeString(pickedTime);
+                              timeController.value = TextEditingValue(
                                 text: timeControllerText,
                                 selection: TextSelection.fromPosition(
-                                  TextPosition(
-                                      offset: timeControllerText.length),
+                                  TextPosition(offset: timeControllerText.length),
                                 ),
                               );
                             });
@@ -216,18 +200,30 @@ class _AddEventModalState extends State<AddEventModal> {
                   Expanded(
                       flex: 4,
                       child: GestureDetector(
-                        onTap: () => getFromGallery(),
+                        onTap: () async {
+                          final pickedImage = await ImageService.pickImageFromGallery();
+                          if (pickedImage != null) {
+                            setState(() {
+                              imageFile = pickedImage;
+                              imageIsPicked = true;
+                            });
+                          }
+                        },
                         child: DottedBorder(
                             borderType: BorderType.RRect,
                             radius: const Radius.circular(8),
                             dashPattern: const [5, 5],
-                            color: AppColors.darkGrean,
+                            color: imageIsPicked ? AppColors.backgroundColor : AppColors.darkGrean,
                             strokeWidth: 2,
-                            child: const SizedBox(
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: FileImage(imageFile),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                                 height: 100,
-                                child: Center(
-                                    child: FaIcon(FontAwesomeIcons.paperclip,
-                                        size: 30)))),
+                                child: null)),
                       )),
                   const Expanded(flex: 4, child: SizedBox()),
                   Expanded(
@@ -238,11 +234,7 @@ class _AddEventModalState extends State<AddEventModal> {
                           dashPattern: const [5, 5],
                           color: AppColors.darkGrean,
                           strokeWidth: 2,
-                          child: const SizedBox(
-                              height: 100,
-                              child: Center(
-                                  child: FaIcon(FontAwesomeIcons.microphone,
-                                      size: 30))))),
+                          child: const SizedBox(height: 100, child: Center(child: FaIcon(FontAwesomeIcons.microphone, size: 30))))),
                 ],
               ),
             ),
@@ -251,26 +243,21 @@ class _AddEventModalState extends State<AddEventModal> {
               child: SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: TextButton.icon(
-                    onPressed: null,
-                    icon: const FaIcon(
-                      FontAwesomeIcons.floppyDisk,
-                      color: AppColors.darkGrean,
-                    ),
-                    label: const Text(
-                      'Сачувај',
-                      style: TextStyle(
-                          color: AppColors.darkGrean,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
+                  child: TextButton(
+                    onPressed: () {
+                      setSinner();
+                      EventService.addEvent(descriptionController.text, imageFile, pickedDate, pickedTime)
+                          .then((value) => {setSinner(), Navigator.pop(context)});
+                    },
                     style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16),
-                                    side: const BorderSide(
-                                        color: AppColors.darkGrean)))),
+                        backgroundColor: MaterialStateProperty.all(AppColors.lightGrean),
+                        overlayColor: MaterialStateProperty.all(AppColors.lightGrean)),
+                    child: spinner
+                        ? const Center(child: SpinKitRing(color: AppColors.darkGrean, size: 35, lineWidth: 4))
+                        : const Text(
+                            'Додај',
+                            style: TextStyle(color: AppColors.darkGrean, fontSize: 16, fontWeight: FontWeight.w900),
+                          ),
                   )),
             )
           ],
@@ -283,14 +270,7 @@ String formatDataString(DateTime date) {
 }
 
 String formatTimeString(TimeOfDay time) {
-  return '${time.hour}:${time.minute}';
+  var minute = time.minute < 10 ? '0${time.minute}' : time.minute.toString();
+  var hour = time.hour < 10 ? '0${time.hour}' : time.hour.toString();
+  return '$hour:$minute';
 }
-
-Future<File?> getFromGallery() async {
-  final ImagePicker picker = ImagePicker();
-  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  if (pickedFile != null) {
-    return File(pickedFile.path);
-  }
-}
-
