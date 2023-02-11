@@ -1,5 +1,9 @@
 import 'dart:io';
+
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ImageService {
   static Future<File?> pickImageFromGallery() async {
@@ -11,8 +15,12 @@ class ImageService {
     return null;
   }
 
-  static File loadImageFromAsset(String key) {
-    final Directory systemTempDir = Directory.systemTemp;
-    return File('${systemTempDir.path}/$key');
+  static Future<File> loadImageFromAsset(String key) async {
+    final byteData = await rootBundle.load('assets/images/$key');
+
+    final file = File('${(await getTemporaryDirectory()).path}/$key');
+    await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    return file;
   }
 }

@@ -19,7 +19,7 @@ class _AddEventModalState extends State<AddEventModal> {
   TextEditingController dateController = TextEditingController(text: formatDataString(DateTime.now()));
   TextEditingController timeController = TextEditingController(text: formatTimeString(TimeOfDay.fromDateTime(DateTime.now())));
   TextEditingController descriptionController = TextEditingController();
-  File imageFile = ImageService.loadImageFromAsset('noImage.jpg');
+  dynamic imageFile;
   bool imageIsPicked = false;
   DateTime pickedDate = DateTime.now();
   TimeOfDay pickedTime = TimeOfDay.fromDateTime(DateTime.now());
@@ -28,6 +28,18 @@ class _AddEventModalState extends State<AddEventModal> {
   void setSinner() {
     setState(() {
       spinner = !spinner;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ImageService.loadImageFromAsset('noImage.jpg').then((file) {
+        setState(() {
+          imageFile = file;
+        });
+      });
     });
   }
 
@@ -216,12 +228,14 @@ class _AddEventModalState extends State<AddEventModal> {
                             color: imageIsPicked ? AppColors.backgroundColor : AppColors.darkGrean,
                             strokeWidth: 2,
                             child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: FileImage(imageFile),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                                decoration: imageFile is File
+                                    ? BoxDecoration(
+                                        image: DecorationImage(
+                                          image: FileImage(imageFile),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )
+                                    : null,
                                 height: 100,
                                 child: null)),
                       )),
