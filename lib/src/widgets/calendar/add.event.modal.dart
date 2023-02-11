@@ -128,6 +128,7 @@ class _AddEventModalState extends State<AddEventModal> {
                             return;
                           } else {
                             setState(() {
+                              this.pickedDate = pickedDate;
                               String dateControllerText = formatDataString(pickedDate);
                               dateController.value = TextEditingValue(
                                 text: dateControllerText,
@@ -189,6 +190,7 @@ class _AddEventModalState extends State<AddEventModal> {
                             return;
                           } else {
                             setState(() {
+                              this.pickedTime = pickedTime;
                               String timeControllerText = formatTimeString(pickedTime);
                               timeController.value = TextEditingValue(
                                 text: timeControllerText,
