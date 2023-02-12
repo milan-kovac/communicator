@@ -18,10 +18,9 @@ class EventService {
       pickedDate
         ..subtract(Duration(hours: pickedDate.hour, minutes: pickedDate.minute))
         ..add(Duration(hours: pickedTime.hour, minutes: pickedTime.minute));
-  
+
       CollectionReference<Map<String, dynamic>> events = FirebaseFirestore.instance.collection('events');
       await events.add({'description': description, 'image': imageUrl, 'date': pickedDate, 'sound': '', 'user': user.id});
-      
     } catch (error) {
       log('addEvent: $error');
       rethrow;

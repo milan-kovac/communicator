@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IntroAbout extends StatelessWidget {
   const IntroAbout({super.key});
@@ -8,6 +7,8 @@ class IntroAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-        'Апликација комуникатор је моћан алат дизајниран да помогне особама са спектром аутизма да побољшају своје комуникацијске вештине. Са корисничким интерфејсом и широким спектром функција, апликација олакшава корисницима да креирају и деле сопствене друштвене приче, граде и вежбају своје језичке вештине, па чак и комуницирају са другима користећи комуникационе системе засноване на сликама.');
+      'Aplikacija komunikator je moćan alat dizajniran da pomogne osobama sa spektrom autizma da poboljšaju svoje komunikacijske veštine. Sa korisničkim interfejsom i širokim spektrom funkcija, aplikacija olakšava korisnicima da kreiraju i dele sopstvene društvene priče, grade i vežbaju svoje jezičke veštine, pa čak i komuniciraju sa drugima koristeći komunikacione sisteme zasnovane na slikama.',
+      style: TextStyle(fontSize: 14.sp),
+    );
   }
 }

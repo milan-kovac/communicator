@@ -4,7 +4,9 @@ import 'package:communicator/src/utils/router.helper.dart';
 import 'package:communicator/src/widgets/intro/intro.about.dart';
 import 'package:communicator/src/widgets/intro/intro.email.input.dart';
 import 'package:communicator/src/widgets/intro/intro.items.dart';
+import 'package:communicator/src/widgets/spinner/button.spinner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 import 'home.page.dart';
@@ -17,15 +19,21 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
-  var introKey = null;
-  var formKey = null;
+  late GlobalKey<IntroductionScreenState> introKey;
+  late GlobalKey<FormState> formKey;
   final inputController = TextEditingController();
-
+  bool spinner = false;
   bool formIsValid = false;
   String email = '';
 
-  Widget buildImage(String assetName, [double width = 350]) {
-    return SizedBox(height: double.infinity, width: double.infinity, child: Image.asset('assets/images/$assetName', width: width));
+  Widget buildImage(String assetName) {
+    return SizedBox(height: double.infinity, width: double.infinity, child: Image.asset('assets/images/$assetName', width: 500.w));
+  }
+
+  void setSpinner() {
+    setState(() {
+      spinner = !spinner;
+    });
   }
 
   @override
@@ -47,29 +55,36 @@ class _IntroPageState extends State<IntroPage> {
           allowImplicitScrolling: false,
           showDoneButton: formIsValid,
           dotsDecorator: DotsDecorator(
-              size: const Size.square(10.0),
-              activeSize: const Size(20.0, 10.0),
+              size: Size.square(10.r),
+              activeSize: Size(20.r, 10.r),
               activeColor: AppColors.darkGrean,
-              color: AppColors.washedOutBlue,
-              spacing: const EdgeInsets.symmetric(horizontal: 3.0),
-              activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0))),
+              spacing: EdgeInsets.symmetric(horizontal: 4.r),
+              activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.r))),
+          nextStyle: ButtonStyle(
+            enableFeedback: true,
+             overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+          ),
+          doneStyle: ButtonStyle(
+            enableFeedback: true,
+             overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+          ),
           pages: [
             PageViewModel(
                 title: '',
-                bodyWidget: const IntroItems(),
+                bodyWidget: IntroItems(),
                 image: buildImage('intro1.png'),
-                decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))),
+                decoration: PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 20.r))),
             PageViewModel(
                 title: "",
                 bodyWidget: const IntroAbout(),
                 image: buildImage('intro2.png'),
-                decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))),
+                decoration: PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 20.r))),
             PageViewModel(
-                titleWidget: const Align(
+                titleWidget: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'Унесите мејл',
-                      style: TextStyle(fontSize: 20),
+                      'Unesite mejl :',
+                      style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     )),
                 bodyWidget: Form(
@@ -81,25 +96,30 @@ class _IntroPageState extends State<IntroPage> {
                         }),
                     child: IntroEmailInput(inputController: inputController)),
                 image: buildImage('intro3.png'),
-                decoration: const PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 50))),
+                decoration: PageDecoration(imagePadding: EdgeInsets.only(bottom: 0, top: 20.r))),
           ],
           onDone: () {
+            setSpinner();
             FocusScope.of(context).unfocus();
-            AuthService.anonymousLogin(email).then((value) => RouterHelper(context: context, where: const HomePage()).goFadeAway());
+            AuthService.anonymousLogin(email).then((value) {
+              RouterHelper(context: context, where: const HomePage()).goFadeAway();
+            });
           },
           back: const Icon(Icons.arrow_back),
-          next: const Icon(
+          next: Icon(
             Icons.chevron_right_sharp,
             color: AppColors.darkGrean,
-            size: 50,
+            size: 50.r,
           ),
-          done: const Icon(
-            Icons.done_all_sharp,
-            color: AppColors.darkGrean,
-            size: 40,
-          ),
+          done: spinner
+              ? const ButtonSpinner(lineWidth: 3, size: 40)
+              : Icon(
+                  Icons.done_all_sharp,
+                  color: AppColors.darkGrean,
+                  size: 40.r,
+                ),
           curve: Curves.fastLinearToSlowEaseIn,
-          controlsMargin: const EdgeInsets.all(16),
+          controlsMargin: EdgeInsets.all(16.r),
         ),
       ),
     );

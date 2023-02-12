@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/app.color.dart';
 import '../../utils/validators.dart';
 
@@ -11,28 +12,28 @@ class IntroEmailInput extends StatelessWidget {
     return TextFormField(
       controller: inputController,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value) => Validators(value: value.toString()).isValidEmail() ? null : 'Унесите исправну мејл адресу',
+      validator: (value) => Validators(value: value.toString()).isValidEmail() ? null : 'Unesite ispravnu mejl adresu.',
       cursorColor: Colors.black,
-      style: const TextStyle(decoration: TextDecoration.none, decorationColor: Colors.white, fontSize: 14),
+      style: TextStyle(decoration: TextDecoration.none, decorationColor: Colors.white, fontSize: 14.sp),
       decoration: InputDecoration(
-        errorStyle: const TextStyle(
-          fontSize: 12,
+        errorStyle: TextStyle(
+          fontSize: 12.sp,
+          fontWeight: FontWeight.bold
         ),
-        contentPadding: const EdgeInsets.all(20),
+        contentPadding: EdgeInsets.all(20.r),
         filled: true,
         fillColor: AppColors.backgroundColor,
         border: const UnderlineInputBorder(),
-        hintText: 'комуникатор@гмаил.цом',
-        suffixIcon: Icon(Icons.email_outlined, color: FocusScope.of(context).isFirstFocus ? AppColors.darkGrean : AppColors.darkGrean),
-        hintStyle: const TextStyle(color: Colors.black, fontSize: 14, fontStyle: FontStyle.italic, letterSpacing: 0.2),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.darkGrean),
+        hintText: 'komunikator@gmail.com',
+        hintStyle: TextStyle(color: Colors.black, fontSize: 13.sp, fontStyle: FontStyle.italic, letterSpacing: 0.2),
+        enabledBorder:  OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.darkGrean, width: 1.5.w),
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.darkGrean),
+        focusedBorder:  OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.darkGrean, width: 1.5.w),
         ),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(width: 1, color: Colors.red),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(width: 1.5.w, color: Colors.red),
         ),
       ),
     );
