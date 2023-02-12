@@ -62,11 +62,11 @@ class _IntroPageState extends State<IntroPage> {
               activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.r))),
           nextStyle: ButtonStyle(
             enableFeedback: true,
-             overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+            overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
           ),
           doneStyle: ButtonStyle(
             enableFeedback: true,
-             overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+            overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
           ),
           pages: [
             PageViewModel(

@@ -8,4 +8,5 @@ class AppColors {
   static const fadedBlack = Color(0xFF1c1c22);
   static const golden = Color(0xFFffc801);
   static const fadedGold = Color(0xFFffdf7e);
+  static const gray = Color(0xFFd3d3d3);
 }

@@ -7,12 +7,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
-      body: Center(
+    return Scaffold(
+      appBar: const PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
+      body: const Center(
         child: Text('HOME PAGE'),
       ),
-      drawer: Sidebar(),
+      drawer: Sidebar(currentPageIndex: 0),
     );
   }
 }

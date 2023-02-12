@@ -22,7 +22,7 @@ class _CalendarPageState extends State<CalendarPage> {
     DateTime now = DateTime.now();
     return Scaffold(
       appBar: const PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
-      drawer: const Sidebar(),
+      drawer: Sidebar(currentPageIndex: 1),
       body: SafeArea(
         child: StreamBuilder<List<EventModel>>(
             stream: EventService.getEvents(),
@@ -47,14 +47,14 @@ class _CalendarPageState extends State<CalendarPage> {
                             showModalBottomSheet(
                               context: context,
                               isScrollControlled: true,
-                              builder: (BuildContext context) => AddEventModal(),
+                              builder: (BuildContext context) =>const AddEventModal(),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
                               ),
                             )
                           },
                           child: Container(
-                            color: AppColors.lightGrean,
+                            color: AppColors.gray,
                             width: double.infinity,
                             height: 50,
                             child: const Center(

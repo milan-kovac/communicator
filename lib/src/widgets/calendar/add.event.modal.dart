@@ -4,6 +4,7 @@ import 'package:communicator/src/services/image.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -46,37 +47,37 @@ class _AddEventModalState extends State<AddEventModal> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 500,
+        height: 500.h,
         color: Colors.transparent,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 130,
-              height: 8,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColors.darkGrean),
-              margin: const EdgeInsets.only(top: 20, bottom: 20),
+              width: 130.w,
+              height: 8.h,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r), color: AppColors.darkGrean),
+              margin: EdgeInsets.only(top: 20.r, bottom: 20.r),
             ),
             Padding(
-              padding: const EdgeInsets.all(30),
+              padding: EdgeInsets.all(30.r),
               child: TextField(
                 cursorColor: AppColors.darkGrean,
                 style: const TextStyle(decorationThickness: 0, decoration: TextDecoration.none, color: AppColors.darkGrean),
                 controller: descriptionController,
-                decoration: const InputDecoration(
-                  hintText: "Опис...",
+                decoration: InputDecoration(
+                  hintText: "Opis . . .",
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
+                    borderSide: BorderSide(color: AppColors.darkGrean, width: 2.w),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
+                    borderSide: BorderSide(color: AppColors.darkGrean, width: 2.w),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(30),
+              padding: EdgeInsets.all(30.r),
               child: Row(
                 children: [
                   /** DATE PICKER **/
@@ -91,11 +92,11 @@ class _AddEventModalState extends State<AddEventModal> {
                               color: FocusScope.of(context).isFirstFocus ? AppColors.darkGrean : AppColors.darkGrean),
                           onPressed: null,
                         ),
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 2.w),
                         ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 2.w),
                         ),
                       ),
                       readOnly: true,
@@ -155,11 +156,11 @@ class _AddEventModalState extends State<AddEventModal> {
                               FaIcon(FontAwesomeIcons.clock, color: FocusScope.of(context).isFirstFocus ? AppColors.darkGrean : AppColors.darkGrean),
                           onPressed: null,
                         ),
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 2.w),
                         ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.darkGrean, width: 3),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.darkGrean, width: 2.w),
                         ),
                       ),
                       readOnly: true,
@@ -208,7 +209,7 @@ class _AddEventModalState extends State<AddEventModal> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30),
+              padding: EdgeInsets.only(left: 30.r, right: 30.r),
               child: Row(
                 children: [
                   Expanded(
@@ -225,7 +226,7 @@ class _AddEventModalState extends State<AddEventModal> {
                         },
                         child: DottedBorder(
                             borderType: BorderType.RRect,
-                            radius: const Radius.circular(8),
+                            radius: Radius.circular(8.r),
                             dashPattern: const [5, 5],
                             color: imageIsPicked ? AppColors.backgroundColor : AppColors.darkGrean,
                             strokeWidth: 2,
@@ -246,19 +247,20 @@ class _AddEventModalState extends State<AddEventModal> {
                       flex: 4,
                       child: DottedBorder(
                           borderType: BorderType.RRect,
-                          radius: const Radius.circular(8),
+                          radius: Radius.circular(8.r),
                           dashPattern: const [5, 5],
                           color: AppColors.darkGrean,
                           strokeWidth: 2,
-                          child: const SizedBox(height: 100, child: Center(child: FaIcon(FontAwesomeIcons.microphone, size: 30))))),
+                          child: SizedBox(height: 100.h, child: Center(child: FaIcon(FontAwesomeIcons.microphone, size: 30.r))))),
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(30),
-              child: SizedBox(
+              padding: EdgeInsets.only(left: 30.r, right: 30.r),
+              child: Container(
                   width: double.infinity,
-                  height: 50,
+                  height: 50.h,
+                  margin: EdgeInsets.only(top: 40.r),
                   child: TextButton(
                     onPressed: () {
                       setSinner();
@@ -266,13 +268,16 @@ class _AddEventModalState extends State<AddEventModal> {
                           .then((value) => {setSinner(), Navigator.pop(context)});
                     },
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(AppColors.lightGrean),
-                        overlayColor: MaterialStateProperty.all(AppColors.lightGrean)),
+                        backgroundColor: MaterialStateProperty.all(AppColors.gray),
+                        overlayColor: MaterialStateProperty.all(AppColors.gray),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ))),
                     child: spinner
-                        ? const Center(child: SpinKitRing(color: AppColors.darkGrean, size: 35, lineWidth: 4))
-                        : const Text(
-                            'Додај',
-                            style: TextStyle(color: AppColors.darkGrean, fontSize: 16, fontWeight: FontWeight.w900),
+                        ? Center(child: SpinKitRing(color: AppColors.darkGrean, size: 35.sp, lineWidth: 4))
+                        : Text(
+                            'Dodaj',
+                            style: TextStyle(color: AppColors.fadedBlack, fontSize: 18.sp, fontWeight: FontWeight.w900),
                           ),
                   )),
             )

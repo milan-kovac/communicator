@@ -7,10 +7,10 @@ class LearningPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
-      drawer: Sidebar(),
-      body: Center(
+    return Scaffold(
+      appBar: const PreferredSize(preferredSize: Size.fromHeight(50), child: CustomAppBar()),
+      drawer: Sidebar(currentPageIndex: 2),
+      body: const Center(
         child: Text('LERANING PAGE'),
       ),
     );

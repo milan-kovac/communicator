@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class IntroItems extends StatelessWidget {
   IntroItems({super.key});
   List<String> items = ['Edukacija', 'Planiranje', 'Podrška'];
-  List<String> icons = ['assets/images/education.png','assets/images/calendar.png','assets/images/support.png'];
+  List<String> icons = ['assets/images/education.png', 'assets/images/calendar.png', 'assets/images/support.png'];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -16,7 +16,10 @@ class IntroItems extends StatelessWidget {
         children: [
           for (var i = 0; i < items.length; i++)
             ListTile(
-              leading: Image.asset(icons[i], width: 35.w,),
+              leading: Image.asset(
+                icons[i],
+                width: 35.w,
+              ),
               title: Text(
                 items[i],
                 style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),

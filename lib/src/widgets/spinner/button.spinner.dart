@@ -5,7 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ButtonSpinner extends StatelessWidget {
   final int lineWidth, size;
-  const ButtonSpinner({super.key,required this.lineWidth,required this.size});
+  const ButtonSpinner({super.key, required this.lineWidth, required this.size});
 
   @override
   Widget build(BuildContext context) {
