@@ -10,19 +10,20 @@ class EventModel {
   final String description;
   final String image;
   final String audio;
+  final String status;
 
-  EventModel({required this.id, required this.user, required this.date, required this.description, required this.image, required this.audio});
+  EventModel(
+      {required this.id,
+      required this.user,
+      required this.date,
+      required this.description,
+      required this.image,
+      required this.audio,
+      required this.status});
 
   // #Convert Event object to JSON
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'user': user,
-      'year': date,
-      'description': description,
-      'image': image,
-      'audio': audio,
-    };
+    return {'id': id, 'user': user, 'year': date, 'description': description, 'image': image, 'audio': audio, 'status': status};
   }
 
 // #Convert JSON to Event object
@@ -32,6 +33,7 @@ class EventModel {
         date = json['date'].toDate(),
         description = json['description'],
         image = json['image'],
+        status = json['status'],
         audio = json['audio'];
 
   // #Convert ist<QueryDocumentSnapshot<Map<String, dynamic>>> to List<EventModel>

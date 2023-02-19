@@ -25,16 +25,15 @@ class _AddEventModalState extends State<AddEventModal> {
   DateTime pickedDate = DateTime.now();
   TimeOfDay pickedTime = TimeOfDay.fromDateTime(DateTime.now());
   bool spinner = false;
-  dynamic imageFile,audioFile;
+  dynamic imageFile, audioFile;
 
   void setSinner() {
     setState(() {
       spinner = !spinner;
     });
   }
-  
-  void setAudio(File audioFile){
-    log('SETUJEM AUDIO');
+
+  void setAudio(File audioFile) {
     setState(() {
       this.audioFile = audioFile;
     });
@@ -265,7 +264,7 @@ class _AddEventModalState extends State<AddEventModal> {
                       child: SizedBox(
                         height: 100.h,
                         width: 100.w,
-                        child: Recording(setAudio:setAudio),
+                        child: Recording(setAudio: setAudio),
                       )),
                 ],
               ),

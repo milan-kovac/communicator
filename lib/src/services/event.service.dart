@@ -11,18 +11,13 @@ import 'package:flutter/material.dart';
 class EventService {
   static Future<void> addEvent(String description, File imageFile, DateTime pickedDate, TimeOfDay pickedTime, dynamic audioFile) async {
     try {
-      log(audioFile.runtimeType.toString());
       UserModel user = await UserService.getLocalUser();
       String imageUrl = await FileService.uploadFile(imageFile);
-      String audioUrl = audioFile is File ?  await FileService.uploadFile(audioFile) : '';
-
-      // format DateTime
-      pickedDate
-        ..subtract(Duration(hours: pickedDate.hour, minutes: pickedDate.minute))
-        ..add(Duration(hours: pickedTime.hour, minutes: pickedTime.minute));
+      String audioUrl = audioFile is File ? await FileService.uploadFile(audioFile) : '';
+      DateTime date = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, pickedTime.minute);
 
       CollectionReference<Map<String, dynamic>> events = FirebaseFirestore.instance.collection('events');
-      await events.add({'description': description, 'image': imageUrl, 'date': pickedDate, 'audio': audioUrl , 'user': user.id});
+      await events.add({'description': description, 'image': imageUrl, 'date': date, 'audio': audioUrl, 'user': user.id, 'status': 'inProgress'});
     } catch (error) {
       log('addEvent: $error');
       rethrow;

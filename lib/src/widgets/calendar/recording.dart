@@ -69,7 +69,6 @@ class _RecordingState extends State<Recording> {
     String audioPath = (await recorderModule.getRecordURL(path: recordPath)).toString();
     File audioFile = await AudioService.get(audioPath);
     widget.setAudio(audioFile);
-    
   }
 
   Stream<int> stopWatchStream() {
@@ -113,12 +112,12 @@ class _RecordingState extends State<Recording> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
-    if(recorderModule.isRecording){
+    if (recorderModule.isRecording) {
       recordingStop();
     }
-}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,9 +140,9 @@ class _RecordingState extends State<Recording> {
             ),
           ),
           Text(
-          '$minutesStr:$secondsStr',
-          style: TextStyle(color: AppColors.darkGrean, fontWeight: FontWeight.w700, fontSize: 16.sp),
-        ),
+            '$minutesStr:$secondsStr',
+            style: TextStyle(color: AppColors.darkGrean, fontWeight: FontWeight.w700, fontSize: 16.sp),
+          ),
         ],
       ),
     );

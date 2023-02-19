@@ -3,10 +3,13 @@ import 'package:communicator/src/services/event.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_event_calendar/flutter_event_calendar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/calendar/add.event.modal.dart';
 import '../widgets/global/custom.app.bar.dart';
 import '../widgets/global/sidebar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
@@ -69,53 +72,76 @@ class _CalendarPageState extends State<CalendarPage> {
                         ? [
                             for (int i = 0; i < snapshot.data!.length; i++)
                               Event(
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: AppColors.backgroundColor,
-                                        borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                        image: DecorationImage(image: NetworkImage(snapshot.data![i].image), alignment: Alignment.topLeft),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 0,
-                                            blurRadius: 2,
-                                            offset: const Offset(0, 3), // changes position of shadow
-                                          ),
-                                        ],
-                                      ),
-                                      width: deviceWidth - 20,
-                                      child: Align(
-                                        alignment: Alignment.topRight,
-                                        child: Container(
-                                          padding: const EdgeInsets.all(8),
-                                          height: 300,
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                        text: EventModel.getFormatedStringTime(snapshot.data![i].date),
-                                                        style: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500)),
-                                                    const WidgetSpan(
-                                                      child: FaIcon(FontAwesomeIcons.clock, size: 16),
-                                                    ),
-                                                  ],
+                                child: Container(
+                                  width: deviceWidth,
+                                  margin: EdgeInsets.only(bottom: 30.r),
+                                  child: Dismissible(
+                                    direction: DismissDirection.endToStart,
+                                    background: Container(
+                                      color: AppColors.error,
+                                      child: Center(
+                                          child: FaIcon(
+                                        FontAwesomeIcons.trash,
+                                        size: 50.r,
+                                        color: Colors.white,
+                                      )),
+                                    ),
+                                    key: ValueKey<int>(i),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 5,
+                                              child: CachedNetworkImage(
+                                                imageUrl: snapshot.data![i].image,
+                                                placeholder: (context, url) =>
+                                                    Center(child: SpinKitRing(color: AppColors.fadedBlack, size: 60.r, lineWidth: 3)),
+                                                errorWidget: (context, url, error) => Icon(Icons.error, size: 60.r, color: AppColors.error),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 2,
+                                              child: Align(
+                                                alignment: Alignment.topRight,
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      RichText(
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                                text: EventModel.getFormatedStringTime(snapshot.data![i].date),
+                                                                style:
+                                                                    const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500)),
+                                                            const WidgetSpan(
+                                                              child: FaIcon(FontAwesomeIcons.clock, size: 16),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            )
+                                          ],
                                         ),
-                                      ),
+                                        Container(
+                                          margin:EdgeInsets.only(left:5, top: 5),
+                                          child: Text(snapshot.data![i].description,style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),)
+                                        )
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      height: 20,
-                                    )
-                                  ],
+                                  ),
                                 ),
                                 dateTime: CalendarDateTime(
                                   year: snapshot.data![i].date.year,
