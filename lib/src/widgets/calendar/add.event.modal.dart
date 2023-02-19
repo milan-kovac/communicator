@@ -1,8 +1,9 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:communicator/src/services/event.service.dart';
 import 'package:communicator/src/services/image.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
-import 'package:dotted_border/dotted_border.dart';
+import 'package:communicator/src/widgets/calendar/recording.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -20,15 +21,22 @@ class _AddEventModalState extends State<AddEventModal> {
   TextEditingController dateController = TextEditingController(text: formatDataString(DateTime.now()));
   TextEditingController timeController = TextEditingController(text: formatTimeString(TimeOfDay.fromDateTime(DateTime.now())));
   TextEditingController descriptionController = TextEditingController();
-  dynamic imageFile;
   bool imageIsPicked = false;
   DateTime pickedDate = DateTime.now();
   TimeOfDay pickedTime = TimeOfDay.fromDateTime(DateTime.now());
   bool spinner = false;
+  dynamic imageFile,audioFile;
 
   void setSinner() {
     setState(() {
       spinner = !spinner;
+    });
+  }
+  
+  void setAudio(File audioFile){
+    log('SETUJEM AUDIO');
+    setState(() {
+      this.audioFile = audioFile;
     });
   }
 
@@ -36,11 +44,15 @@ class _AddEventModalState extends State<AddEventModal> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      //initial image
       ImageService.loadImageFromAsset('noImage.jpg').then((file) {
         setState(() {
           imageFile = file;
         });
       });
+
+      //inital audio
+      audioFile = '';
     });
   }
 
@@ -224,34 +236,37 @@ class _AddEventModalState extends State<AddEventModal> {
                             });
                           }
                         },
-                        child: DottedBorder(
-                            borderType: BorderType.RRect,
-                            radius: Radius.circular(8.r),
-                            dashPattern: const [5, 5],
-                            color: imageIsPicked ? AppColors.backgroundColor : AppColors.darkGrean,
-                            strokeWidth: 2,
-                            child: Container(
-                                decoration: imageFile is File
-                                    ? BoxDecoration(
-                                        image: DecorationImage(
-                                          image: FileImage(imageFile),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )
-                                    : null,
-                                height: 100,
-                                child: null)),
+                        child: SizedBox(
+                            height: 100.h,
+                            width: 100.w,
+                            child: imageIsPicked
+                                ? Container(
+                                    decoration: imageFile is File
+                                        ? BoxDecoration(
+                                            image: DecorationImage(
+                                              image: FileImage(imageFile),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )
+                                        : null,
+                                    height: 100,
+                                    child: null)
+                                : Center(
+                                    child: FaIcon(
+                                      FontAwesomeIcons.fileImage,
+                                      color: AppColors.darkGrean,
+                                      size: 35.r,
+                                    ),
+                                  )),
                       )),
                   const Expanded(flex: 4, child: SizedBox()),
                   Expanded(
                       flex: 4,
-                      child: DottedBorder(
-                          borderType: BorderType.RRect,
-                          radius: Radius.circular(8.r),
-                          dashPattern: const [5, 5],
-                          color: AppColors.darkGrean,
-                          strokeWidth: 2,
-                          child: SizedBox(height: 100.h, child: Center(child: FaIcon(FontAwesomeIcons.microphone, size: 30.r))))),
+                      child: SizedBox(
+                        height: 100.h,
+                        width: 100.w,
+                        child: Recording(setAudio:setAudio),
+                      )),
                 ],
               ),
             ),
@@ -264,7 +279,7 @@ class _AddEventModalState extends State<AddEventModal> {
                   child: TextButton(
                     onPressed: () {
                       setSinner();
-                      EventService.addEvent(descriptionController.text, imageFile, pickedDate, pickedTime)
+                      EventService.addEvent(descriptionController.text, imageFile, pickedDate, pickedTime, audioFile)
                           .then((value) => {setSinner(), Navigator.pop(context)});
                     },
                     style: ButtonStyle(

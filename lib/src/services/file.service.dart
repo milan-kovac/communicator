@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 class FileService {
   static Future<String> uploadFile(File file) async {
     final fileType = getFileExtension(file.path) == '.mp3' ? 'audio' : 'images';
+    log(fileType);
     final destination = 'files/$fileType';
     try {
       final ref = FirebaseStorage.instance.ref(destination).child(getFileName(file.path));
@@ -18,6 +19,7 @@ class FileService {
 
   static String getFileExtension(String path) {
     try {
+      log( ".${path.split('.').last}");
       return ".${path.split('.').last}";
     } catch (error) {
       log('getFileExtension: $error');

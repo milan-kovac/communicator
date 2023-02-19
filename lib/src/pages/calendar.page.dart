@@ -47,7 +47,7 @@ class _CalendarPageState extends State<CalendarPage> {
                             showModalBottomSheet(
                               context: context,
                               isScrollControlled: true,
-                              builder: (BuildContext context) =>const AddEventModal(),
+                              builder: (BuildContext context) => const AddEventModal(),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
                               ),

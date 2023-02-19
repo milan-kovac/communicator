@@ -9,9 +9,9 @@ class EventModel {
   final DateTime date;
   final String description;
   final String image;
-  final String sound;
+  final String audio;
 
-  EventModel({required this.id, required this.user, required this.date, required this.description, required this.image, required this.sound});
+  EventModel({required this.id, required this.user, required this.date, required this.description, required this.image, required this.audio});
 
   // #Convert Event object to JSON
   Map<String, dynamic> toJson() {
@@ -21,7 +21,7 @@ class EventModel {
       'year': date,
       'description': description,
       'image': image,
-      'sound': sound,
+      'audio': audio,
     };
   }
 
@@ -32,7 +32,7 @@ class EventModel {
         date = json['date'].toDate(),
         description = json['description'],
         image = json['image'],
-        sound = json['sound'];
+        audio = json['audio'];
 
   // #Convert ist<QueryDocumentSnapshot<Map<String, dynamic>>> to List<EventModel>
   static List<EventModel> fromListDynamic(List<QueryDocumentSnapshot<Map<String, dynamic>>> items) {

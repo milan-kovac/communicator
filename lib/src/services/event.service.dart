@@ -9,10 +9,12 @@ import 'package:communicator/src/services/user.service.dart';
 import 'package:flutter/material.dart';
 
 class EventService {
-  static Future<void> addEvent(String description, File imageFile, DateTime pickedDate, TimeOfDay pickedTime) async {
+  static Future<void> addEvent(String description, File imageFile, DateTime pickedDate, TimeOfDay pickedTime, dynamic audioFile) async {
     try {
+      log(audioFile.runtimeType.toString());
       UserModel user = await UserService.getLocalUser();
       String imageUrl = await FileService.uploadFile(imageFile);
+      String audioUrl = audioFile is File ?  await FileService.uploadFile(audioFile) : '';
 
       // format DateTime
       pickedDate
@@ -20,7 +22,7 @@ class EventService {
         ..add(Duration(hours: pickedTime.hour, minutes: pickedTime.minute));
 
       CollectionReference<Map<String, dynamic>> events = FirebaseFirestore.instance.collection('events');
-      await events.add({'description': description, 'image': imageUrl, 'date': pickedDate, 'sound': '', 'user': user.id});
+      await events.add({'description': description, 'image': imageUrl, 'date': pickedDate, 'audio': audioUrl , 'user': user.id});
     } catch (error) {
       log('addEvent: $error');
       rethrow;
