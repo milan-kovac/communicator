@@ -28,7 +28,7 @@ class Sidebar extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(0),
               child: Image.asset(
-                'assets/images/logo.jpg',
+                'assets/images/logo.png',
               ),
             ),
           ),
