@@ -74,6 +74,7 @@ class _AddEventModalState extends State<AddEventModal> {
               padding: EdgeInsets.all(30.r),
               child: TextField(
                 cursorColor: AppColors.darkGrean,
+                maxLength: 80,
                 style: const TextStyle(decorationThickness: 0, decoration: TextDecoration.none, color: AppColors.darkGrean),
                 controller: descriptionController,
                 decoration: InputDecoration(

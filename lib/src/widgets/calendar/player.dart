@@ -1,5 +1,6 @@
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_sound/public/flutter_sound_player.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -30,15 +31,20 @@ class _PlayerState extends State<Player> {
     super.dispose();
   }
 
-  void playStop() {
-    setIsPlaying();
+  Future<void> playStop() async {
     if (isPlaying) {
-      player.stopPlayer();
+      await player.stopPlayer();
+      setIsPlaying();
     } else {
-      player.startPlayer(
-          fromURI:widget.uri,
+      setIsPlaying();
+      await player.setVolume(1);
+      await player.startPlayer(
+          fromURI: widget.uri,
           codec: Codec.aacMP4,
-          whenFinished: () => setIsPlaying());
+          whenFinished: () {
+            setIsPlaying();
+            player.stopPlayer();
+          });
     }
   }
 
@@ -51,10 +57,11 @@ class _PlayerState extends State<Player> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: playStop,
+      onTap: () async => await playStop(),
       child: FaIcon(
         isPlaying ? FontAwesomeIcons.pause : FontAwesomeIcons.play,
         color: AppColors.fadedBlack,
+        size: 35.r,
       ),
     );
   }
