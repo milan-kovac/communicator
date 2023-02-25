@@ -1,3 +1,4 @@
+import 'package:communicator/src/pages/emotions.page.dart';
 import 'package:communicator/src/pages/home.page.dart';
 import 'package:communicator/src/pages/learning.page.dart';
 import 'package:communicator/src/services/auth.service.dart';
@@ -11,14 +12,12 @@ class Sidebar extends StatelessWidget {
   final int currentPageIndex;
   Sidebar({super.key, required this.currentPageIndex});
   List<String> items = ['Početak', 'Kalendar', 'Učenje', 'Emocije', 'Telo'];
-  List<Widget> pages = [const HomePage(), const CalendarPage(), const LearningPage(), const HomePage(), const HomePage()];
+  List<Widget> pages = [const HomePage(), const CalendarPage(), const LearningPage(), const EmotionsPage(), const HomePage()];
   @override
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: AppColors.backgroundColor,
       child: Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 250.h,

@@ -74,7 +74,7 @@ class _CalendarPageState extends State<CalendarPage> {
                             for (int i = 0; i < snapshot.data!.length; i++)
                               Event(
                                 child: Container(
-                                  margin: EdgeInsets.only(bottom:80.r),
+                                  margin: EdgeInsets.only(bottom: 80.r),
                                   child: Padding(
                                     padding: EdgeInsets.all(9.r),
                                     child: Container(
