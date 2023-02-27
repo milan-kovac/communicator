@@ -51,6 +51,7 @@ flutter:
   assets:
      - assets/images/
      - assets/images/emotions/
+     - assets/json/
 
 
 flutter_icons:

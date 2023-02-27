@@ -1,0 +1,79 @@
+{
+   "emotions":[
+    {
+        "id": "1",
+        "image": "assets/images/emotions/2.jpg",
+        "description": "Besna"
+    },
+    {
+        "id": "2",
+        "image": "assets/images/emotions/3.jpg",
+        "description": "Zabrinuta"
+    },
+    {
+        "id": "3",
+        "image": "assets/images/emotions/4.jpg",
+        "description": "Srećna"
+    },
+    {
+        "id": "4",
+        "image": "assets/images/emotions/5.jpg",
+        "description": "Zamišljena"
+    },
+    {
+        "id": "5",
+        "image": "assets/images/emotions/6.jpg",
+        "description": "Ljuta"
+    },
+    {
+        "id": "6",
+        "image": "assets/images/emotions/7.jpg",
+        "description": "Iznenađena"
+    },
+    {
+        "id": "7",
+        "image": "assets/images/emotions/9.jpg",
+        "description": "Razmišlja"
+    },
+    {
+        "id": "8",
+        "image": "assets/images/emotions/10.jpg",
+        "description": "Priča"
+    },
+    {
+        "id": "9",
+        "image": "assets/images/emotions/11.jpg",
+        "description": "Nenam opis"
+    },
+    {
+        "id": "10",
+        "image": "assets/images/emotions/12.jpg",
+        "description": "Procenjuje"
+    },
+    {
+        "id": "11",
+        "image": "assets/images/emotions/13.jpg",
+        "description": "Uplašena"
+    },
+    {
+        "id": "12",
+        "image": "assets/images/emotions/15.jpg",
+        "description": "Smeje se"
+    },
+    {
+        "id": "13",
+        "image": "assets/images/emotions/16.jpg",
+        "description": "Ispituje"
+    },
+    {
+        "id": "14",
+        "image": "assets/images/emotions/17.jpg",
+        "description": "Pazi se"
+    },
+    {
+        "id": "15",
+        "image": "assets/images/emotions/18.jpg",
+        "description": "Namiguje"
+    }
+   ]
+}

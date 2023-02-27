@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:communicator/src/services/event.service.dart';
 import 'package:communicator/src/services/image.service.dart';
