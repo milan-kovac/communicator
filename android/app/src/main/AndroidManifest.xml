@@ -9,6 +9,8 @@
         android:label="Komunikator"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAv-50lbaJl8PdCPQwSDShBeHWl3oplO0I"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
