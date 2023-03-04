@@ -47,4 +47,25 @@ class UserService {
       rethrow;
     }
   }
+
+  static Future<bool> adminControlActivated() async {
+    try {
+      UserModel user = await getLocalUser();
+      return user.adminControl;
+    } catch (error) {
+      log('getLocalUser: $error');
+      rethrow;
+    }
+  }
+
+  static Future<void> setAdminControl() async {
+    try {
+      UserModel user = await getLocalUser();
+      user.adminControl = !user.adminControl;
+      await saveUserLocal(user);
+    } catch (error) {
+      log('getLocalUser: $error');
+      rethrow;
+    }
+  }
 }

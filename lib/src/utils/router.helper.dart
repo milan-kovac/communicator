@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-
 class RouterHelper {
   BuildContext context;
   Widget where;
@@ -8,12 +6,12 @@ class RouterHelper {
   RouterHelper({required this.context, required this.where});
 
   void goFadeAway() {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
-      PageTransition(
-        type: PageTransitionType.fade,
-        alignment: Alignment.topCenter,
-        child: where,
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) => where,
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:communicator/src/models/user.dart';
 import 'package:communicator/src/pages/intro.page.dart';
 import 'package:communicator/src/services/user.service.dart';
@@ -12,7 +11,7 @@ class AuthService {
     try {
       final userCredential = await FirebaseAuth.instance.signInAnonymously();
       final userId = userCredential.user!.uid;
-      UserModel user = UserModel.fromJson({'id': userId, 'email': email});
+      UserModel user = UserModel.fromJson({'id': userId, 'email': email, 'adminControl': true});
       await UserService.addUser(user);
       await UserService.saveUserLocal(user);
     } on FirebaseAuthException catch (error) {

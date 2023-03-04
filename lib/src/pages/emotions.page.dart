@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:communicator/src/pages/emotion.single.page.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:communicator/src/widgets/global/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/global/custom.app.bar.dart';
 
 class EmotionsPage extends StatefulWidget {

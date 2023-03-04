@@ -36,6 +36,7 @@ dependencies:
   shimmer: ^2.0.0
   google_maps_flutter: ^2.2.4
   url_launcher: ^6.1.10
+  animated_toggle_switch: ^0.6.1
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,7 @@ flutter:
   assets:
      - assets/images/
      - assets/images/emotions/
+     - assets/images/body/
      - assets/json/
 
 

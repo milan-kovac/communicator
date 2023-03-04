@@ -35,17 +35,20 @@ class _MapLocationState extends State<MapLocation> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 350.h,
-      width: MediaQuery.of(context).size.width,
-      child: GoogleMap(
-        mapType: MapType.satellite,
-        initialCameraPosition: home,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        markers: markers.values.toSet(),
-        myLocationEnabled: true,
+    return Expanded(
+      flex: 2,
+      child: SizedBox(
+        height: 300.h,
+        width: MediaQuery.of(context).size.width,
+        child: GoogleMap(
+          mapType: MapType.satellite,
+          initialCameraPosition: home,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          markers: markers.values.toSet(),
+          myLocationEnabled: true,
+        ),
       ),
     );
   }

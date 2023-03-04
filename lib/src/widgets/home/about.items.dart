@@ -19,7 +19,7 @@ class AboutItems extends StatelessWidget {
     }
 
     void launchPhone(String phone) async {
-      final uri = Uri.parse('tel:$phone');
+      final uri = Uri(scheme: 'tel', path: phone);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
       } else {
@@ -27,59 +27,81 @@ class AboutItems extends StatelessWidget {
       }
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextButton.icon(
-            onPressed: () => launchEmail('autizamns@gmail.com'),
-            icon: FaIcon(
-              FontAwesomeIcons.envelope,
-              color: AppColors.fadedBlack,
-              size: 25.r,
+    return Expanded(
+      flex: 2,
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextButton.icon(
+              onPressed: () => launchEmail('autizamns@gmail.com'),
+              icon: FaIcon(
+                FontAwesomeIcons.envelope,
+                color: AppColors.fadedBlack,
+                size: 25.r,
+              ),
+              label: Text(
+                'autizamns@gmail.com',
+                textAlign: TextAlign.justify,
+                style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
+              ),
+              style: ButtonStyle(
+                overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+              ),
             ),
-            label: Text(
-              'autizamns@gmail.com',
-              textAlign: TextAlign.justify,
-              style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
-            )),
-        TextButton.icon(
-            onPressed: () => launchPhone('+381 60 45 03 765'),
-            icon: FaIcon(
-              FontAwesomeIcons.headset,
-              color: AppColors.fadedBlack,
-              size: 25.r,
+            TextButton.icon(
+              onPressed: () => launchPhone('+381604503765'),
+              icon: FaIcon(
+                FontAwesomeIcons.headset,
+                color: AppColors.fadedBlack,
+                size: 25.r,
+              ),
+              label: Text(
+                'Zorana Bijelović\n+381 60 45 03 765 ',
+                textAlign: TextAlign.justify,
+                style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
+              ),
+              style: ButtonStyle(
+                overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+              ),
             ),
-            label: Text(
-              'Zorana Bijelović\n+381 60 45 03 765 ',
-              textAlign: TextAlign.justify,
-              style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
-            )),
-        TextButton.icon(
-            onPressed: () => launchPhone('+381 60 402 76 925'),
-            icon: FaIcon(
-              FontAwesomeIcons.headset,
-              color: AppColors.fadedBlack,
-              size: 25.r,
+            TextButton.icon(
+              onPressed: () => launchPhone('+3816040276925'),
+              icon: FaIcon(
+                FontAwesomeIcons.headset,
+                color: AppColors.fadedBlack,
+                size: 25.r,
+              ),
+              label: Text(
+                'Radojka Gajanović\n+381 60 402 76 925',
+                textAlign: TextAlign.justify,
+                style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
+              ),
+              style: ButtonStyle(
+                overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+              ),
             ),
-            label: Text(
-              'Radojka Gajanović\n+381 60 402 76 925',
-              textAlign: TextAlign.justify,
-              style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
-            )),
-        TextButton.icon(
-            onPressed: null,
-            icon: FaIcon(
-              FontAwesomeIcons.buildingColumns,
-              color: AppColors.fadedBlack,
-              size: 25.r,
+            TextButton.icon(
+              onPressed: null,
+              icon: FaIcon(
+                FontAwesomeIcons.buildingColumns,
+                color: AppColors.fadedBlack,
+                size: 25.r,
+              ),
+              label: Text(
+                'Otp banka: 325-9500600024356-23',
+                textAlign: TextAlign.justify,
+                style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
+              ),
+              style: ButtonStyle(
+                overlayColor: MaterialStateColor.resolveWith((states) => AppColors.lightGrean),
+              ),
             ),
-            label: Text(
-              'Otp banka: 325-9500600024356-23',
-              textAlign: TextAlign.justify,
-              style: TextStyle(color: AppColors.darkGrean, fontSize: 13.sp, fontWeight: FontWeight.bold),
-            ))
-      ],
+          ],
+        ),
+      ),
     );
   }
 }
