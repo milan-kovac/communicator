@@ -41,13 +41,10 @@ class _EmotionsPageState extends State<EmotionsPage> {
             overscroll.disallowIndicator();
             return true;
           },
-          child: 
-          
-          GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1, mainAxisSpacing: 0),
-            itemCount: emotions.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
+          child: ListView.separated(
+            physics: const AlwaysScrollableScrollPhysics(),
+             itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => EmotionSinglePage(emotion: emotions[index])));
                 },
@@ -55,7 +52,7 @@ class _EmotionsPageState extends State<EmotionsPage> {
                   tag: emotions[index]['id'],
                   child: Column(
                     children: [
-                      Image.asset(emotions[index]['image']),
+                      FadeInImage(placeholder: AssetImage(emotions[index]['image']), image: AssetImage(emotions[index]['image'])),
                       Text(
                         emotions[index]['description'],
                         style: TextStyle(color: AppColors.fadedBlack, fontWeight: FontWeight.w600, fontSize: 18.sp),
@@ -64,8 +61,11 @@ class _EmotionsPageState extends State<EmotionsPage> {
                   ),
                 ),
               );
-            },
-          ),
+          },
+          separatorBuilder: (context, index) =>const Divider(
+                color: Colors.transparent,
+              ),
+              itemCount: emotions.length),
         ));
   }
 }

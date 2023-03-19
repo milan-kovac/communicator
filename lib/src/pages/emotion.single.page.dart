@@ -7,7 +7,7 @@ class EmotionSinglePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.black,
       body: Hero(
         tag: emotion['id'],
         child: Center(
