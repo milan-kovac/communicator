@@ -41,8 +41,10 @@ class _EmotionsPageState extends State<EmotionsPage> {
             overscroll.disallowIndicator();
             return true;
           },
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 50),
+          child: 
+          
+          GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1, mainAxisSpacing: 0),
             itemCount: emotions.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
@@ -51,18 +53,14 @@ class _EmotionsPageState extends State<EmotionsPage> {
                 },
                 child: Hero(
                   tag: emotions[index]['id'],
-                  child: Card(
-                    child: Column(
-                      children: [
-                        Expanded(child: Image.asset(emotions[index]['image'])),
-                        Container(
-                            margin: EdgeInsets.only(top: 10.r, bottom: 10.r),
-                            child: Text(
-                              emotions[index]['description'],
-                              style: TextStyle(color: AppColors.fadedBlack, fontWeight: FontWeight.w600, fontSize: 18.sp),
-                            ))
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      Image.asset(emotions[index]['image']),
+                      Text(
+                        emotions[index]['description'],
+                        style: TextStyle(color: AppColors.fadedBlack, fontWeight: FontWeight.w600, fontSize: 18.sp),
+                      )
+                    ],
                   ),
                 ),
               );
