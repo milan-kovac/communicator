@@ -41,29 +41,20 @@ class _BodyPageState extends State<BodyPage> {
             overscroll.disallowIndicator();
             return true;
           },
-          child: ListWheelScrollView(perspective: 0.010, physics: const FixedExtentScrollPhysics(), diameterRatio:3, itemExtent: 300, children: [
+          child: ListView(children: [
             for (var i = 0; i < body.length; i++)
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.r),
-                      topRight: Radius.circular(10.r),
-                      bottomLeft: Radius.circular(10.r),
-                      bottomRight: Radius.circular(10.r)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 1.r,
-                      blurRadius: 7.r,
-                      offset: const Offset(0, 3), // changes position of shadow
+              Center(
+                child: InkWell(
+                  onTap: () {},
+                  child: SizedBox(
+                    width: 300.w,
+                    height: 200.h,
+                    child: Card(
+                      child: Image.asset(
+                        body[i]['image'],
+                      ),
                     ),
-                  ],
-                ),
-                child: Image.asset(
-                  body[i]['image'],
-                  height: 300.h,
-                  width: 300.w,
+                  ),
                 ),
               )
           ]),

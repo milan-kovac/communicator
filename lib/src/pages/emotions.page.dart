@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:communicator/src/pages/emotion.single.page.dart';
-import 'package:communicator/src/utils/app.color.dart';
 import 'package:communicator/src/widgets/global/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,35 +35,22 @@ class _EmotionsPageState extends State<EmotionsPage> {
         appBar: PreferredSize(preferredSize: Size.fromHeight(50.h), child: const CustomAppBar()),
         drawer: Sidebar(currentPageIndex: 3),
         body: NotificationListener<OverscrollIndicatorNotification>(
-          onNotification: (overscroll) {
-            overscroll.disallowIndicator();
-            return true;
-          },
-          child: ListView.separated(
-            physics: const AlwaysScrollableScrollPhysics(),
-             itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => EmotionSinglePage(emotion: emotions[index])));
-                },
-                child: Hero(
-                  tag: emotions[index]['id'],
-                  child: Column(
-                    children: [
-                      FadeInImage(placeholder: AssetImage(emotions[index]['image']), image: AssetImage(emotions[index]['image'])),
-                      Text(
-                        emotions[index]['description'],
-                        style: TextStyle(color: AppColors.fadedBlack, fontWeight: FontWeight.w600, fontSize: 18.sp),
-                      )
-                    ],
+            onNotification: (overscroll) {
+              overscroll.disallowIndicator();
+              return true;
+            },
+            child: GridView.count(
+              primary: false,
+              padding: const EdgeInsets.all(20),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              crossAxisCount: 2,
+              children: [
+                for (var index = 0; index < emotions.length; index++)
+                  Card(
+                    child: FadeInImage(placeholder: AssetImage(emotions[index]['image']), image: AssetImage(emotions[index]['image'])),
                   ),
-                ),
-              );
-          },
-          separatorBuilder: (context, index) =>const Divider(
-                color: Colors.transparent,
-              ),
-              itemCount: emotions.length),
-        ));
+              ],
+            )));
   }
 }
