@@ -1,10 +1,11 @@
 import 'dart:developer';
 import 'package:communicator/src/models/user.dart';
-import 'package:communicator/src/pages/intro.page.dart';
 import 'package:communicator/src/services/user.service.dart';
 import 'package:communicator/src/utils/router.helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../pages/intro.page.dart';
 
 class AuthService {
   static Future<void> anonymousLogin(String email) async {
@@ -32,7 +33,7 @@ class AuthService {
   static Future<void> logOut(BuildContext context) async {
     try {
       await UserService.deleteLocalUser();
-      RouterHelper(context: context, where: const IntroPage()).goFadeAway();
+      RouterHelper(context: context, where:  const IntroPage()).goFadeAway();
     } catch (error) {
       log('logOut: $error');
     }

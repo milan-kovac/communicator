@@ -22,7 +22,7 @@ class IntroEmailInput extends StatelessWidget {
         fillColor: AppColors.backgroundColor,
         border: const UnderlineInputBorder(),
         hintText: 'komunikator@gmail.com',
-        hintStyle: TextStyle(color: Colors.black, fontSize: 13.sp, fontStyle: FontStyle.italic, letterSpacing: 0.2),
+        hintStyle: TextStyle(color: Colors.black, fontSize: 13.sp, letterSpacing: 0.2),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.darkGrean, width: 1.5.w),
         ),

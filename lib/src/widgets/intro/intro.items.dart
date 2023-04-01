@@ -14,10 +14,6 @@ class IntroItems extends StatelessWidget {
         children: [
           for (var i = 0; i < items.length; i++)
             ListTile(
-              leading: Image.asset(
-                icons[i],
-                width: 35.w,
-              ),
               title: Text(
                 items[i],
                 style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
