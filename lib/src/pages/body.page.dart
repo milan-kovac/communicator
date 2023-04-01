@@ -5,6 +5,7 @@ import 'package:communicator/src/widgets/global/custom.app.bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/global/sidebar.dart';
 
 class BodyPage extends StatefulWidget {
@@ -16,6 +17,7 @@ class BodyPage extends StatefulWidget {
 
 class _BodyPageState extends State<BodyPage> {
   List body = [];
+  int? clickedImage;
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/json/body.json');
@@ -43,20 +45,40 @@ class _BodyPageState extends State<BodyPage> {
             return true;
           },
           child: ListView(children: [
-            for (var i = 0; i < body.length; i++)
+            for (var index = 0; index < body.length; index++)
               Center(
                 child: InkWell(
                   onTap: () async {
-                    await TtsService(text: body[i]['description']).startSpeech();
+                    setState(() {
+                      clickedImage = index;
+                    });
+                    await TtsService(text: body[index]['description']).startSpeech();
+                    setState(() {
+                      clickedImage = null;
+                    });
                   },
-                  child: SizedBox(
-                    width: 300.w,
-                    height: 200.h,
-                    child: Card(
-                      child: Image.asset(
-                        body[i]['image'],
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        width: 300.w,
+                        height: 200.h,
+                        child: Card(
+                          elevation: 5,
+                          child: Image.asset(
+                            body[index]['image'],
+                          ),
+                        ),
                       ),
-                    ),
+                      Visibility(
+                        visible: clickedImage == index,
+                        child: SizedBox(
+                          width: 300.w,
+                          height: 200.h,
+                          child: Card(color: Colors.black.withOpacity(0.3), child: const Center(child: FaIcon(FontAwesomeIcons.volumeHigh))),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               )

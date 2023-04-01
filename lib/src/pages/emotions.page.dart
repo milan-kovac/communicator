@@ -3,6 +3,8 @@ import 'package:communicator/src/widgets/global/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../services/tts.service.dart';
 import '../widgets/global/custom.app.bar.dart';
 
 class EmotionsPage extends StatefulWidget {
@@ -14,6 +16,7 @@ class EmotionsPage extends StatefulWidget {
 
 class _EmotionsPageState extends State<EmotionsPage> {
   List emotions = [];
+  int? clickedImage;
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/json/emotions.json');
@@ -47,8 +50,32 @@ class _EmotionsPageState extends State<EmotionsPage> {
               crossAxisCount: 2,
               children: [
                 for (var index = 0; index < emotions.length; index++)
-                  Card(
-                    child: FadeInImage(placeholder: AssetImage(emotions[index]['image']), image: AssetImage(emotions[index]['image'])),
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        clickedImage = index;
+                      });
+                      await TtsService(text: emotions[index]['description']).startSpeech();
+                      setState(() {
+                        clickedImage = null;
+                      });
+                    },
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Card(
+                          elevation: 15,
+                          child: FadeInImage(placeholder: AssetImage(emotions[index]['image']), image: AssetImage(emotions[index]['image'])),
+                        ),
+                        Visibility(
+                          visible: clickedImage == index,
+                          child: Card(
+                              color: Colors.black.withOpacity(0.3),
+                              child: const SizedBox(
+                                  width: double.infinity, height: double.infinity, child: Center(child: FaIcon(FontAwesomeIcons.volumeHigh)))),
+                        ),
+                      ],
+                    ),
                   ),
               ],
             )));

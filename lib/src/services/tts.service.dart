@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_tts/flutter_tts.dart';
 
 class TtsService {
@@ -8,21 +10,50 @@ class TtsService {
   }
 
   Future startSpeech() async {
-    print(ftts);
     try {
-      print('start');
-      print(text);
-      await ftts.awaitSpeakCompletion(true);
-      await ftts.setLanguage("en-US");
-      await ftts.setSpeechRate(1);
-      await ftts.setVolume(1.0);
+      await initTts();
+      await ftts.setLanguage("rs");
+      await ftts.setSpeechRate(0.8);
+      await ftts.setVolume(1);
       await ftts.setPitch(1);
-      var result = await ftts.speak("Hello World, this is Flutter Campus.");
-      print(result);
-      print('kraj');
+      await ftts.setVoice({'name': 'sr', 'locale': 'sr'});
+      await ftts.speak(text);
     } catch (e) {
-      print('ERROR');
-      print(e);
+      log(e.toString());
     }
+  }
+
+  Future initTts() async {
+    await ftts.awaitSpeakCompletion(true);
+    await ftts.getDefaultEngine;
+    await ftts.getDefaultVoice;
+
+    ftts.setStartHandler(() {
+      log("Playing");
+    });
+
+    ftts.setInitHandler(() {
+      log("TTS Initialized");
+    });
+
+    ftts.setCompletionHandler(() {
+      log("Complete");
+    });
+
+    ftts.setCancelHandler(() {
+      log("Cancel");
+    });
+
+    ftts.setPauseHandler(() {
+      log("Paused");
+    });
+
+    ftts.setContinueHandler(() {
+      log("Continued");
+    });
+
+    ftts.setErrorHandler((msg) {
+      log("error: $msg");
+    });
   }
 }

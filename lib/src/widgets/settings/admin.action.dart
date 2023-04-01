@@ -30,7 +30,7 @@ class _AdminActionState extends State<AdminAction> {
                         elevation: 5,
                         child: Container(
                           height: 50.h,
-                          padding: EdgeInsets.all(6.r),
+                          padding: EdgeInsets.all(10.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -57,7 +57,7 @@ class _AdminActionState extends State<AdminAction> {
                         elevation: 5,
                         child: Container(
                           height: 50.h,
-                          padding: EdgeInsets.all(6.r),
+                          padding: EdgeInsets.all(10.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -66,7 +66,7 @@ class _AdminActionState extends State<AdminAction> {
                                 style: TextStyle(color: AppColors.fadedBlack, fontSize: 16.sp, fontWeight: FontWeight.w900),
                               ),
                               Text(snapshot.data?.email ?? '',
-                                  style: TextStyle(color: const Color.fromARGB(255, 66, 64, 64), fontSize: 16.sp, fontWeight: FontWeight.w900))
+                                  style: TextStyle(color: const Color.fromARGB(255, 66, 64, 64), fontSize: 15.sp, fontWeight: FontWeight.w900))
                             ],
                           ),
                         ),
