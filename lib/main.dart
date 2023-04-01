@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'Communicator',
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(fontFamily: GoogleFonts.montserrat().fontFamily),
+            theme: ThemeData(fontFamily: GoogleFonts.ruda().fontFamily),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

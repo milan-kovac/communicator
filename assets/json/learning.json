@@ -1,0 +1,54 @@
+{
+    "institutions":[
+        {
+            "id": "1",
+            "image": "assets/images/learning/institutions/bakery.jpg",
+            "description": "Pekara"
+        },
+        {
+           "id": "2",
+           "image": "assets/images/learning/institutions/bank.jpg",
+           "description": "Banka"
+       },
+       {
+           "id": "3",
+           "image": "assets/images/learning/institutions/confectionery.jpg",
+           "description": "Poslastičarnica"
+       },
+       {
+           "id": "4",
+           "image": "assets/images/learning/institutions/dentist.jpg",
+           "description": "Zubar"
+       },
+       {
+           "id": "5",
+           "image": "assets/images/learning/institutions/market.jpg",
+           "description": "Pijaca"
+       },
+       {
+           "id": "6",
+           "image": "assets/images/learning/institutions/pharmacy.jpg",
+           "description": "Apoteka"
+       },
+       {
+           "id": "7",
+           "image": "assets/images/learning/institutions/post-office.jpg",
+           "description": "Pošta"
+       },
+       {
+           "id": "8",
+           "image": "assets/images/learning/institutions/restaurant.jpg",
+           "description": "Restoran"
+       },
+       {
+           "id": "9",
+           "image": "assets/images/learning/institutions/school.jpg",
+           "description": "Škola"
+       },
+       {
+           "id": "10",
+           "image": "assets/images/learning/institutions/shop.jpg",
+           "description": "Prodavnica"
+       }
+       ]
+}

@@ -18,6 +18,8 @@ class Sidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: AppColors.backgroundColor,
+      width: 180.w,
+      elevation: 2,
       child: Column(
         children: [
           SizedBox(
@@ -28,7 +30,9 @@ class Sidebar extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(0),
               child: Image.asset(
-                'assets/images/logo.png',
+                'assets/images/autism.png',
+                height: 120.h,
+                width: 120.w,
               ),
             ),
           ),

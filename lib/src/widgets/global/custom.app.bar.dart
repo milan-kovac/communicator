@@ -9,13 +9,13 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
         elevation: 5,
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.darkGrean,
         leading: IconButton(
           icon: const FaIcon(
             FontAwesomeIcons.bars,
             size: 28,
           ),
-          color: AppColors.darkGrean,
+          color: Colors.white,
           onPressed: () => Scaffold.of(context).openDrawer(),
         ));
   }

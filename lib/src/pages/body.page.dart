@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:communicator/src/services/tts.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:communicator/src/widgets/global/custom.app.bar.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,9 @@ class _BodyPageState extends State<BodyPage> {
             for (var i = 0; i < body.length; i++)
               Center(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    await TtsService(text: body[i]['description']).startSpeech();
+                  },
                   child: SizedBox(
                     width: 300.w,
                     height: 200.h,

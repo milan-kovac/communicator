@@ -3,32 +3,32 @@
      {
          "id": "1",
          "image": "assets/images/body/1.jpg",
-         "description": ""
+         "description": "Boli me glava"
      },
      {
          "id": "2",
          "image": "assets/images/body/2.jpg",
-         "description": ""
+         "description": "Boli me lakat"
      },
      {
          "id": "3",
          "image": "assets/images/body/3.jpg",
-         "description": ""
+         "description": "Boli me noga"
      },
      {
          "id": "4",
          "image": "assets/images/body/4.jpg",
-         "description": ""
+         "description": "Boli me koleno"
      },
      {
          "id": "5",
          "image": "assets/images/body/5.jpg",
-         "description": ""
+         "description": "Boli me grlo"
      },
      {
          "id": "6",
          "image": "assets/images/body/6.jpg",
-         "description": ""
+         "description": "Boli me vrat"
      },
      {
          "id": "7",
@@ -43,42 +43,42 @@
      {
          "id": "9",
          "image": "assets/images/body/9.jpg",
-         "description": ""
+         "description": "Boli me zub"
      },
      {
          "id": "10",
          "image": "assets/images/body/10.jpg",
-         "description": ""
+         "description": "Boli me zglob"
      },
      {
          "id": "11",
          "image": "assets/images/body/11.jpg",
-         "description": ""
+         "description": "Boli me srce"
      },
      {
          "id": "12",
          "image": "assets/images/body/12.jpg",
-         "description": ""
+         "description": "Boli me stomak"
      },
      {
          "id": "13",
          "image": "assets/images/body/13.jpg",
-         "description": ""
+         "description": "Boli me glava"
      },
      {
          "id": "14",
          "image": "assets/images/body/14.jpg",
-         "description": ""
+         "description": "Bolu me ledja"
      },
      {
          "id": "15",
          "image": "assets/images/body/15.jpg",
-         "description": ""
+         "description": "Boli me rame"
      },
      {
         "id": "16",
         "image": "assets/images/body/16.jpg",
-        "description": ""
+        "description": "Boli me kičma"
     }
     ]
  }
