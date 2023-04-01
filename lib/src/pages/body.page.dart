@@ -49,13 +49,16 @@ class _BodyPageState extends State<BodyPage> {
               Center(
                 child: InkWell(
                   onTap: () async {
-                    setState(() {
-                      clickedImage = index;
-                    });
-                    await TtsService(text: body[index]['description']).startSpeech();
-                    setState(() {
-                      clickedImage = null;
-                    });
+                    if (clickedImage == null) {
+                      setState(() {
+                        clickedImage = index;
+                      });
+                      TtsService(text: body[index]['description']).startSpeech().then((value) => {
+                            setState(() {
+                              clickedImage = null;
+                            })
+                          });
+                    }
                   },
                   child: Stack(
                     alignment: Alignment.center,

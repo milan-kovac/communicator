@@ -12,11 +12,12 @@ class TtsService {
   Future startSpeech() async {
     try {
       await initTts();
-      await ftts.setLanguage("rs");
-      await ftts.setSpeechRate(0.8);
+      await ftts.setLanguage("sr");
+      await ftts.setSpeechRate(0.6);
       await ftts.setVolume(1);
       await ftts.setPitch(1);
       await ftts.setVoice({'name': 'sr', 'locale': 'sr'});
+      await ftts.awaitSpeakCompletion(true);
       await ftts.speak(text);
     } catch (e) {
       log(e.toString());
@@ -24,10 +25,6 @@ class TtsService {
   }
 
   Future initTts() async {
-    await ftts.awaitSpeakCompletion(true);
-    await ftts.getDefaultEngine;
-    await ftts.getDefaultVoice;
-
     ftts.setStartHandler(() {
       log("Playing");
     });
