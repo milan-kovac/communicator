@@ -26,9 +26,7 @@ class LearningPage extends StatelessWidget {
           children: [
             for (var i = 0; i < pageItems.length; i++)
               GestureDetector(
-                onTap: () {
-                  RouterHelper(context: context, where: LearningSinglePage(learningType: pageItems[i].learningType)).goFadeAway();
-                },
+                onTap: () => RouterHelper(context: context, where: LearningSinglePage(learningType: pageItems[i].learningType)).goFadeAway(),
                 child: Card(
                   color: AppColors.darkGrean,
                   child: Center(

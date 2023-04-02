@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../services/tts.service.dart';
 import '../utils/router.helper.dart';
 
 class LearningSinglePage extends StatefulWidget {
@@ -19,6 +20,7 @@ class LearningSinglePage extends StatefulWidget {
 
 class _LearningSinglePageState extends State<LearningSinglePage> {
   List items = [];
+  int? clickedImage;
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/json/learning.json');
@@ -52,11 +54,50 @@ class _LearningSinglePageState extends State<LearningSinglePage> {
             return true;
           },
           child: GridView.count(
-            primary: true,
             crossAxisSpacing: 2,
             mainAxisSpacing: 1,
-            crossAxisCount: 2,
-            children: [for (var i = 0; i < items.length; i++) Image.asset(items[i]['image'])],
+            crossAxisCount: 3,
+            children: [
+              for (var index = 0; index < items.length; index++)
+                InkWell(
+                    child: InkWell(
+                  onTap: () async => {
+                    if (clickedImage == null)
+                      {
+                        setState(() {
+                          clickedImage = index;
+                        }),
+                        TtsService(text: items[index]['description']).startSpeech().then((value) => {
+                              setState(() {
+                                clickedImage = null;
+                              })
+                            }),
+                      }
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Card(
+                        elevation: 15,
+                        child: FadeInImage(
+                          placeholder: AssetImage(items[index]['image']),
+                          image: AssetImage(items[index]['image']),
+                          fit: BoxFit.fill,
+                          width: double.maxFinite,
+                          height: double.maxFinite,
+                        ),
+                      ),
+                      Visibility(
+                        visible: clickedImage == index,
+                        child: Card(
+                            color: Colors.black.withOpacity(0.3),
+                            child: const SizedBox(
+                                width: double.maxFinite, height: double.maxFinite, child: Center(child: FaIcon(FontAwesomeIcons.volumeHigh)))),
+                      ),
+                    ],
+                  ),
+                ))
+            ],
           ),
         ));
   }

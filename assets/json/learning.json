@@ -1,54 +1,101 @@
 {
-    "institutions":[
+    "institutions": [
         {
             "id": "1",
             "image": "assets/images/learning/institutions/bakery.jpg",
             "description": "Pekara"
         },
         {
-           "id": "2",
-           "image": "assets/images/learning/institutions/bank.jpg",
-           "description": "Banka"
-       },
-       {
-           "id": "3",
-           "image": "assets/images/learning/institutions/confectionery.jpg",
-           "description": "Poslastičarnica"
-       },
-       {
-           "id": "4",
-           "image": "assets/images/learning/institutions/dentist.jpg",
-           "description": "Zubar"
-       },
-       {
-           "id": "5",
-           "image": "assets/images/learning/institutions/market.jpg",
-           "description": "Pijaca"
-       },
-       {
-           "id": "6",
-           "image": "assets/images/learning/institutions/pharmacy.jpg",
-           "description": "Apoteka"
-       },
-       {
-           "id": "7",
-           "image": "assets/images/learning/institutions/post-office.jpg",
-           "description": "Pošta"
-       },
-       {
-           "id": "8",
-           "image": "assets/images/learning/institutions/restaurant.jpg",
-           "description": "Restoran"
-       },
-       {
-           "id": "9",
-           "image": "assets/images/learning/institutions/school.jpg",
-           "description": "Škola"
-       },
-       {
-           "id": "10",
-           "image": "assets/images/learning/institutions/shop.jpg",
-           "description": "Prodavnica"
-       }
-       ]
+            "id": "2",
+            "image": "assets/images/learning/institutions/bank.jpg",
+            "description": "Banka"
+        },
+        {
+            "id": "3",
+            "image": "assets/images/learning/institutions/confectionery.jpg",
+            "description": "Poslastičarnica"
+        },
+        {
+            "id": "4",
+            "image": "assets/images/learning/institutions/dentist.jpg",
+            "description": "Zubar"
+        },
+        {
+            "id": "5",
+            "image": "assets/images/learning/institutions/market.jpg",
+            "description": "Pijaca"
+        },
+        {
+            "id": "6",
+            "image": "assets/images/learning/institutions/pharmacy.jpg",
+            "description": "Apoteka"
+        },
+        {
+            "id": "7",
+            "image": "assets/images/learning/institutions/post-office.jpg",
+            "description": "Pošta"
+        },
+        {
+            "id": "8",
+            "image": "assets/images/learning/institutions/restaurant.jpg",
+            "description": "Restoran"
+        },
+        {
+            "id": "9",
+            "image": "assets/images/learning/institutions/school.jpg",
+            "description": "Škola"
+        },
+        {
+            "id": "10",
+            "image": "assets/images/learning/institutions/shop.jpg",
+            "description": "Prodavnica"
+        }
+    ],
+    "transport":[
+        {
+            "id": "1",
+            "image": "assets/images/learning/transport/bike.png",
+            "description": "Bicikl"
+        },
+        {
+            "id": "2",
+            "image": "assets/images/learning/transport/boat.png",
+            "description": "Čamac"
+        },
+        {
+            "id": "3",
+            "image": "assets/images/learning/transport/bus.png",
+            "description": "Autobus"
+        },
+        {
+            "id": "4",
+            "image": "assets/images/learning/transport/car.png",
+            "description": "Automobil"
+        },
+        {
+            "id": "5",
+            "image": "assets/images/learning/transport/electric-scooter.png",
+            "description": "Trotinet"
+        },
+        {
+            "id": "6",
+            "image": "assets/images/learning/transport/plane.png",
+            "description": "Avion"
+        },
+        {
+            "id": "7",
+            "image": "assets/images/learning/transport/scooter.png",
+            "description": "Skuter"
+        },
+        {
+            "id": "8",
+            "image": "assets/images/learning/transport/ship.png",
+            "description": "Brod"
+        },
+        {
+            "id": "9",
+            "image": "assets/images/learning/transport/train.png",
+            "description": "Voz"
+        }
+    ]
 }

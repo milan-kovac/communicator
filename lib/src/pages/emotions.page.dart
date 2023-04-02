@@ -51,17 +51,18 @@ class _EmotionsPageState extends State<EmotionsPage> {
               children: [
                 for (var index = 0; index < emotions.length; index++)
                   InkWell(
-                    onTap: () async {
-                      if (clickedImage == null) {
-                        setState(() {
-                          clickedImage = index;
-                        });
-                        TtsService(text: emotions[index]['description']).startSpeech().then((value) => {
-                              setState(() {
-                                clickedImage = null;
-                              })
-                            });
-                      }
+                    onTap: () async => {
+                      if (clickedImage == null)
+                        {
+                          setState(() {
+                            clickedImage = index;
+                          }),
+                          TtsService(text: emotions[index]['description']).startSpeech().then((value) => {
+                                setState(() {
+                                  clickedImage = null;
+                                })
+                              }),
+                        }
                     },
                     child: Stack(
                       alignment: Alignment.center,
