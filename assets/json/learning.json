@@ -1,101 +1,388 @@
 {
-    "institutions": [
-        {
-            "id": "1",
-            "image": "assets/images/learning/institutions/bakery.jpg",
-            "description": "Pekara"
-        },
-        {
-            "id": "2",
-            "image": "assets/images/learning/institutions/bank.jpg",
-            "description": "Banka"
-        },
-        {
-            "id": "3",
-            "image": "assets/images/learning/institutions/confectionery.jpg",
-            "description": "Poslastičarnica"
-        },
-        {
-            "id": "4",
-            "image": "assets/images/learning/institutions/dentist.jpg",
-            "description": "Zubar"
-        },
-        {
-            "id": "5",
-            "image": "assets/images/learning/institutions/market.jpg",
-            "description": "Pijaca"
-        },
-        {
-            "id": "6",
-            "image": "assets/images/learning/institutions/pharmacy.jpg",
-            "description": "Apoteka"
-        },
-        {
-            "id": "7",
-            "image": "assets/images/learning/institutions/post-office.jpg",
-            "description": "Pošta"
-        },
-        {
-            "id": "8",
-            "image": "assets/images/learning/institutions/restaurant.jpg",
-            "description": "Restoran"
-        },
-        {
-            "id": "9",
-            "image": "assets/images/learning/institutions/school.jpg",
-            "description": "Škola"
-        },
-        {
-            "id": "10",
-            "image": "assets/images/learning/institutions/shop.jpg",
-            "description": "Prodavnica"
-        }
-    ],
-    "transport":[
-        {
-            "id": "1",
-            "image": "assets/images/learning/transport/bike.png",
-            "description": "Bicikl"
-        },
-        {
-            "id": "2",
-            "image": "assets/images/learning/transport/boat.png",
-            "description": "Čamac"
-        },
-        {
-            "id": "3",
-            "image": "assets/images/learning/transport/bus.png",
-            "description": "Autobus"
-        },
-        {
-            "id": "4",
-            "image": "assets/images/learning/transport/car.png",
-            "description": "Automobil"
-        },
-        {
-            "id": "5",
-            "image": "assets/images/learning/transport/electric-scooter.png",
-            "description": "Trotinet"
-        },
-        {
-            "id": "6",
-            "image": "assets/images/learning/transport/plane.png",
-            "description": "Avion"
-        },
-        {
-            "id": "7",
-            "image": "assets/images/learning/transport/scooter.png",
-            "description": "Skuter"
-        },
-        {
-            "id": "8",
-            "image": "assets/images/learning/transport/ship.png",
-            "description": "Brod"
-        },
-        {
-            "id": "9",
-            "image": "assets/images/learning/transport/train.png",
-            "description": "Voz"
-        }
-    ]
+  "institutions": [
+    {
+      "id": "1",
+      "image": "assets/images/learning/institutions/bakery.jpg",
+      "description": "Pekara"
+    },
+    {
+      "id": "2",
+      "image": "assets/images/learning/institutions/bank.jpg",
+      "description": "Banka"
+    },
+    {
+      "id": "3",
+      "image": "assets/images/learning/institutions/confectionery.jpg",
+      "description": "Poslastičarnica"
+    },
+    {
+      "id": "4",
+      "image": "assets/images/learning/institutions/dentist.jpg",
+      "description": "Zubar"
+    },
+    {
+      "id": "5",
+      "image": "assets/images/learning/institutions/market.jpg",
+      "description": "Pijaca"
+    },
+    {
+      "id": "6",
+      "image": "assets/images/learning/institutions/pharmacy.jpg",
+      "description": "Apoteka"
+    },
+    {
+      "id": "7",
+      "image": "assets/images/learning/institutions/post-office.jpg",
+      "description": "Pošta"
+    },
+    {
+      "id": "8",
+      "image": "assets/images/learning/institutions/restaurant.jpg",
+      "description": "Restoran"
+    },
+    {
+      "id": "9",
+      "image": "assets/images/learning/institutions/school.jpg",
+      "description": "Škola"
+    },
+    {
+      "id": "10",
+      "image": "assets/images/learning/institutions/shop.jpg",
+      "description": "Prodavnica"
+    }
+  ],
+  "transport": [
+    {
+      "id": "1",
+      "image": "assets/images/learning/transport/bike.png",
+      "description": "Bicikl"
+    },
+    {
+      "id": "2",
+      "image": "assets/images/learning/transport/boat.png",
+      "description": "Čamac"
+    },
+    {
+      "id": "3",
+      "image": "assets/images/learning/transport/bus.png",
+      "description": "Autobus"
+    },
+    {
+      "id": "4",
+      "image": "assets/images/learning/transport/car.png",
+      "description": "Automobil"
+    },
+    {
+      "id": "5",
+      "image": "assets/images/learning/transport/electric-scooter.png",
+      "description": "Trotinet"
+    },
+    {
+      "id": "6",
+      "image": "assets/images/learning/transport/plane.png",
+      "description": "Avion"
+    },
+    {
+      "id": "7",
+      "image": "assets/images/learning/transport/scooter.png",
+      "description": "Skuter"
+    },
+    {
+      "id": "8",
+      "image": "assets/images/learning/transport/ship.png",
+      "description": "Brod"
+    },
+    {
+      "id": "9",
+      "image": "assets/images/learning/transport/train.png",
+      "description": "Voz"
+    }
+  ],
+  "food": [
+    {
+      "id": 1,
+      "image": "assets/images/learning/food/apple.png",
+      "description": "Jabuka"
+    },
+    {
+      "id": 2,
+      "image": "assets/images/learning/food/apricot.png",
+      "description": "Kajsija"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/learning/food/banana.png",
+      "description": "Banana"
+    },
+    {
+      "id": 4,
+      "image": "assets/images/learning/food/beet.png",
+      "description": "Cvekla"
+    },
+    {
+      "id": 5,
+      "image": "assets/images/learning/food/blackberry.png",
+      "description": "Kupina"
+    },
+    {
+      "id": 6,
+      "image": "assets/images/learning/food/blueberry.png",
+      "description": "Borovnica"
+    },
+    {
+      "id": 7,
+      "image": "assets/images/learning/food/bread.png",
+      "description": "Hleb"
+    },
+    {
+      "id": 8,
+      "image": "assets/images/learning/food/broccoli.png",
+      "description": "Brokoli"
+    },
+    {
+      "id": 9,
+      "image": "assets/images/learning/food/carrot.png",
+      "description": "Šargarepa"
+    },
+    {
+      "id": 10,
+      "image": "assets/images/learning/food/cauliflower.png",
+      "description": "Karfiol"
+    },
+    {
+      "id": 11,
+      "image": "assets/images/learning/food/celery.png",
+      "description": "Celer"
+    },
+    {
+      "id": 12,
+      "image": "assets/images/learning/food/cheese.png",
+      "description": "Sir"
+    },
+    {
+      "id": 13,
+      "image": "assets/images/learning/food/cherry.png",
+      "description": "Višnja"
+    },
+    {
+      "id": 14,
+      "image": "assets/images/learning/food/chickenMeet.png",
+      "description": "Pileće meso"
+    },
+    {
+      "id": 15,
+      "image": "assets/images/learning/food/cream.png",
+      "description": "Pavlaka"
+    },
+    {
+      "id": 16,
+      "image": "assets/images/learning/food/cucumber.png",
+      "description": "Krastavac"
+    },
+    {
+      "id": 17,
+      "image": "assets/images/learning/food/dill.png",
+      "description": "Mirođija"
+    },
+    {
+      "id": 18,
+      "image": "assets/images/learning/food/drink.png",
+      "description": "Pijem"
+    },
+    {
+      "id": 19,
+      "image": "assets/images/learning/food/eat.png",
+      "description": "Jedem"
+    },
+    {
+      "id": 20,
+      "image": "assets/images/learning/food/egg.png",
+      "description": "Jaje"
+    },
+    {
+      "id": 21,
+      "image": "assets/images/learning/food/eggplant.png",
+      "description": "Patlidžan"
+    },
+    {
+      "id": 22,
+      "image": "assets/images/learning/food/figs.png",
+      "description": "Smokva"
+    },
+    {
+      "id": 23,
+      "image": "assets/images/learning/food/garlic.png",
+      "description": "Beli luk"
+    },
+    {
+      "id": 24,
+      "image": "assets/images/learning/food/ginger.png",
+      "description": "Đumbir"
+    },
+    {
+      "id": 25,
+      "image": "assets/images/learning/food/grapefruit.png",
+      "description": "Grejfrut"
+    },
+    {
+      "id": 26,
+      "image": "assets/images/learning/food/grapes.png",
+      "description": "Grožđe"
+    },
+    {
+      "id": 27,
+      "image": "assets/images/learning/food/hotDogs.png",
+      "description": "Viršla"
+    },
+    {
+      "id": 28,
+      "image": "assets/images/learning/food/juice.png",
+      "description": "Sok"
+    },
+    {
+      "id": 29,
+      "image": "assets/images/learning/food/kecap.png",
+      "description": "Kečap"
+    },
+    {
+      "id": 30,
+      "image": "assets/images/learning/food/kiwi.png",
+      "description": "Kivi"
+    },
+    {
+      "id": 31,
+      "image": "assets/images/learning/food/lemon.png",
+      "description": "Limun"
+    },
+    {
+      "id": 32,
+      "image": "assets/images/learning/food/lettuce.png",
+      "description": "Zelena Salata"
+    },
+    {
+      "id": 33,
+      "image": "assets/images/learning/food/lime.png",
+      "description": "Limeta"
+    },
+    {
+      "id": 34,
+      "image": "assets/images/learning/food/mango.png",
+      "description": "Mango"
+    },
+    {
+      "id": 35,
+      "image": "assets/images/learning/food/mayonnaise.png",
+      "description": "Majonez"
+    },
+    {
+      "id": 36,
+      "image": "assets/images/learning/food/meat.png",
+      "description": "Svinjsko Meso"
+    },
+    {
+      "id": 37,
+      "image": "assets/images/learning/food/melon.png",
+      "description": "Dinja"
+    },
+    {
+      "id": 38,
+      "image": "assets/images/learning/food/milk.png",
+      "description": "Mleko"
+    },
+    {
+      "id": 39,
+      "image": "assets/images/learning/food/onion.png",
+      "description": "Luk"
+    },
+    {
+      "id": 40,
+      "image": "assets/images/learning/food/orange.png",
+      "description": "Pomorandža"
+    },
+    {
+      "id": 41,
+      "image": "assets/images/learning/food/parsley.png",
+      "description": "Prešun"
+    },
+    {
+      "id": 42,
+      "image": "assets/images/learning/food/pate.png",
+      "description": "Pašteta"
+    },
+    {
+      "id": 43,
+      "image": "assets/images/learning/food/peach.png",
+      "description": "Breskva"
+    },
+    {
+      "id": 44,
+      "image": "assets/images/learning/food/pear.png",
+      "description": "Kruška"
+    },
+    {
+      "id": 45,
+      "image": "assets/images/learning/food/pepper.png",
+      "description": "Paprika"
+    },
+    {
+      "id": 46,
+      "image": "assets/images/learning/food/pineapple.png",
+      "description": "Ananas"
+    },
+    {
+      "id": 47,
+      "image": "assets/images/learning/food/plum.png",
+      "description": "Šljiva"
+    },
+    {
+      "id": 48,
+      "image": "assets/images/learning/food/pomegranate.png",
+      "description": "Nar"
+    },
+    {
+      "id": 49,
+      "image": "assets/images/learning/food/potato.png",
+      "description": "Krompir"
+    },
+    {
+      "id": 50,
+      "image": "assets/images/learning/food/radish.png",
+      "description": "Rotkvica"
+    },
+    {
+      "id": 51,
+      "image": "assets/images/learning/food/sandwich.png",
+      "description": "Sendvič"
+    },
+    {
+      "id": 52,
+      "image": "assets/images/learning/food/strawberry.png",
+      "description": "Jakoda"
+    },
+    {
+      "id": 53,
+      "image": "assets/images/learning/food/tomatoes.png",
+      "description": "Paradajiz"
+    },
+    {
+      "id": 54,
+      "image": "assets/images/learning/food/water.png",
+      "description": "Voda"
+    },
+    {
+      "id": 55,
+      "image": "assets/images/learning/food/watermelon.png",
+      "description": "Lubenica"
+    },
+    {
+      "id": 56,
+      "image": "assets/images/learning/food/yogurt.png",
+      "description": "Jogurt"
+    },
+    {
+      "id": 57,
+      "image": "assets/images/learning/food/zucchini.png",
+      "description": "Tikvice"
+    }
+  ]
 }

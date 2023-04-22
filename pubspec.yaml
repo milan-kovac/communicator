@@ -57,6 +57,7 @@ flutter:
      - assets/images/body/
      - assets/images/learning/institutions/
      - assets/images/learning/transport/
+     - assets/images/learning/food/
      - assets/json/
 
 

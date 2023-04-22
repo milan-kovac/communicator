@@ -10,7 +10,8 @@ class LearningPageItems {
   static List<LearningPageItems> getLearningPageItems() {
     return [
       LearningPageItems(id: 1, learningType: 'institutions', icon: FontAwesomeIcons.buildingColumns),
-      LearningPageItems(id: 2, learningType: 'transport', icon: FontAwesomeIcons.bus)
+      LearningPageItems(id: 2, learningType: 'transport', icon: FontAwesomeIcons.bus),
+      LearningPageItems(id: 3, learningType: 'food', icon: FontAwesomeIcons.burger)
     ];
   }
 }
