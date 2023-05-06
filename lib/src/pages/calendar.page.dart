@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:communicator/src/models/event.dart';
 import 'package:communicator/src/services/event.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:communicator/src/widgets/calendar/add.event.button.dart';
+import 'package:communicator/src/widgets/calendar/calendar.event.dart';
 import 'package:communicator/src/widgets/calendar/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_event_calendar/flutter_event_calendar.dart';
@@ -51,92 +54,7 @@ class _CalendarPageState extends State<CalendarPage> {
                         ? [
                             for (int i = 0; i < snapshot.data!.length; i++)
                               Event(
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 80.r),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(9.r),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10.r),
-                                            topRight: Radius.circular(10.r),
-                                            bottomLeft: Radius.circular(10.r),
-                                            bottomRight: Radius.circular(10.r)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 5.r,
-                                            blurRadius: 7.r,
-                                            offset: const Offset(0, 3), // changes position of shadow
-                                          ),
-                                        ],
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                flex: 5,
-                                                child: CachedNetworkImage(
-                                                  height: 200.h,
-                                                  fit: BoxFit.cover,
-                                                  imageUrl: snapshot.data![i].image,
-                                                  placeholder: (context, url) =>
-                                                      Center(child: SpinKitRing(color: AppColors.fadedBlack, size: 60.r, lineWidth: 3)),
-                                                  errorWidget: (context, url, error) => Icon(Icons.error, size: 60.r, color: AppColors.error),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                flex: 5,
-                                                child: SizedBox(
-                                                  height: 200.h,
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Container(
-                                                        margin: EdgeInsets.only(left: 8.r, top: 10.r),
-                                                        child: RichText(
-                                                          text: TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                  text: EventModel.getFormatedStringTime(snapshot.data![i].date),
-                                                                  style: const TextStyle(
-                                                                      color: AppColors.darkGrean, fontSize: 15, fontWeight: FontWeight.bold)),
-                                                              const WidgetSpan(
-                                                                child: FaIcon(FontAwesomeIcons.clock, size: 16),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        margin: EdgeInsets.only(left: 8.r, top: 10.r),
-                                                        child: Text(snapshot.data![i].description,
-                                                            style: const TextStyle(color: AppColors.darkGrean, fontSize: 15)),
-                                                      ),
-                                                      Expanded(
-                                                        flex: 9,
-                                                        child: Visibility(
-                                                          visible: snapshot.data![i].audio.isNotEmpty,
-                                                          child: Container(
-                                                            margin: EdgeInsets.only(left: 8.r, top: 10.r),
-                                                            child: Align(child: Player(uri: snapshot.data![i].audio)),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                child: CalendarEvent(data: snapshot.data![i]),
                                 dateTime: CalendarDateTime(
                                   year: snapshot.data![i].date.year,
                                   month: snapshot.data![i].date.month,

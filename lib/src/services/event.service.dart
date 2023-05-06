@@ -9,15 +9,26 @@ import 'package:communicator/src/services/user.service.dart';
 import 'package:flutter/material.dart';
 
 class EventService {
-  static Future<void> addEvent(String description, File imageFile, DateTime pickedDate, TimeOfDay pickedTime, dynamic audioFile) async {
+  static Future<void> addEvent(String description, File imageFile,
+      DateTime pickedDate, TimeOfDay pickedTime, dynamic audioFile) async {
     try {
       UserModel user = await UserService.getLocalUser();
       String imageUrl = await FileService.uploadFile(imageFile);
-      String audioUrl = audioFile is File ? await FileService.uploadFile(audioFile) : '';
-      DateTime date = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, pickedTime.minute);
+      String audioUrl =
+          audioFile is File ? await FileService.uploadFile(audioFile) : '';
+      DateTime date = DateTime(pickedDate.year, pickedDate.month,
+          pickedDate.day, pickedTime.hour, pickedTime.minute);
 
-      CollectionReference<Map<String, dynamic>> events = FirebaseFirestore.instance.collection('events');
-      await events.add({'description': description, 'image': imageUrl, 'date': date, 'audio': audioUrl, 'user': user.id, 'status': 'inProgress'});
+      CollectionReference<Map<String, dynamic>> events =
+          FirebaseFirestore.instance.collection('events');
+      await events.add({
+        'description': description,
+        'image': imageUrl,
+        'date': date,
+        'audio': audioUrl,
+        'user': user.id,
+        'status': 'inProgress'
+      });
     } catch (error) {
       log('addEvent: $error');
       rethrow;
@@ -30,8 +41,18 @@ class EventService {
       yield* FirebaseFirestore.instance
           .collection('events')
           .where("user", isEqualTo: user.id)
+          .orderBy('date')
           .snapshots()
           .map((snapshot) => EventModel.fromListDynamic(snapshot.docs));
+    } catch (error) {
+      log('getEvents: $error');
+      rethrow;
+    }
+  }
+
+  static Future deletEvent(eventId) async {
+    try {
+      FirebaseFirestore.instance.collection('events').doc(eventId).delete();
     } catch (error) {
       log('getEvents: $error');
       rethrow;
