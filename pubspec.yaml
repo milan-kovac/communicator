@@ -37,6 +37,7 @@ dependencies:
   google_maps_flutter: ^2.2.4
   url_launcher: ^6.1.10
   flutter_tts: ^3.6.3
+  flutter_bloc: ^8.1.2
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,7 @@ flutter:
      - assets/images/learning/institutions/
      - assets/images/learning/transport/
      - assets/images/learning/food/
+     - assets/images/learning/numbers/
      - assets/json/
 
 

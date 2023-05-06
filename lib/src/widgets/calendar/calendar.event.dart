@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../models/event.dart';
 import '../../services/user.service.dart';
 import '../../utils/app.color.dart';
@@ -19,7 +18,7 @@ class CalendarEvent extends StatefulWidget {
 }
 
 class _CalendarEventState extends State<CalendarEvent> {
-   Future _delete(BuildContext context) {
+  Future _delete(BuildContext context) {
     return showDialog(
         context: context,
         barrierDismissible: false,
@@ -30,19 +29,26 @@ class _CalendarEventState extends State<CalendarEvent> {
             actions: [
               TextButton(
                   onPressed: () {
-                  EventService.deletEvent(widget.data.id);
-                   Navigator.pop(context, true);
+                    EventService.deletEvent(widget.data.id);
+                    Navigator.pop(context, true);
                   },
-                  child: Text('Da',style: TextStyle(color: Colors.green, fontSize: 18.sp),)),
+                  child: Text(
+                    'Da',
+                    style: TextStyle(color: Colors.green, fontSize: 18.sp),
+                  )),
               TextButton(
                   onPressed: () {
-                   Navigator.pop(context, false);
+                    Navigator.pop(context, false);
                   },
-                  child:  Text('Ne',style: TextStyle(color: Colors.red, fontSize: 18.sp),))
+                  child: Text(
+                    'Ne',
+                    style: TextStyle(color: Colors.red, fontSize: 18.sp),
+                  ))
             ],
           );
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -51,16 +57,12 @@ class _CalendarEventState extends State<CalendarEvent> {
           return Dismissible(
             confirmDismiss: (direction) async {
               if (direction == DismissDirection.endToStart) {
-               return await _delete(context);
+                return await _delete(context);
               }
               return false;
             },
-            background: Center(
-                child: FaIcon(FontAwesomeIcons.trash,
-                    color: Colors.red, size: 45.r)),
-            direction: snapshot.data == true
-                ? DismissDirection.endToStart
-                : DismissDirection.none,
+            background: Center(child: FaIcon(FontAwesomeIcons.trash, color: Colors.red, size: 45.r)),
+            direction: snapshot.data == true ? DismissDirection.endToStart : DismissDirection.none,
             key: Key(widget.data.id),
             child: Container(
               margin: EdgeInsets.only(bottom: 80.r),
@@ -79,8 +81,7 @@ class _CalendarEventState extends State<CalendarEvent> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5.r,
                         blurRadius: 7.r,
-                        offset:
-                            const Offset(0, 3), // changes position of shadow
+                        offset: const Offset(0, 3), // changes position of shadow
                       ),
                     ],
                   ),
@@ -94,15 +95,8 @@ class _CalendarEventState extends State<CalendarEvent> {
                               height: 200.h,
                               fit: BoxFit.cover,
                               imageUrl: widget.data.image,
-                              placeholder: (context, url) => Center(
-                                  child: SpinKitRing(
-                                      color: AppColors.fadedBlack,
-                                      size: 60.r,
-                                      lineWidth: 3)),
-                              errorWidget: (context, url, error) => Icon(
-                                  Icons.error,
-                                  size: 60.r,
-                                  color: AppColors.error),
+                              placeholder: (context, url) => Center(child: SpinKitRing(color: AppColors.fadedBlack, size: 60.r, lineWidth: 3)),
+                              errorWidget: (context, url, error) => Icon(Icons.error, size: 60.r, color: AppColors.error),
                             ),
                           ),
                           Expanded(
@@ -114,45 +108,31 @@ class _CalendarEventState extends State<CalendarEvent> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    margin:
-                                        EdgeInsets.only(left: 8.r, top: 10.r),
+                                    margin: EdgeInsets.only(left: 8.r, top: 10.r),
                                     child: RichText(
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
-                                              text: EventModel
-                                                  .getFormatedStringTime(
-                                                      widget.data.date),
-                                              style: const TextStyle(
-                                                  color: AppColors.darkGrean,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold)),
+                                              text: EventModel.getFormatedStringTime(widget.data.date),
+                                              style: const TextStyle(color: AppColors.darkGrean, fontSize: 15, fontWeight: FontWeight.bold)),
                                           const WidgetSpan(
-                                            child: FaIcon(
-                                                FontAwesomeIcons.clock,
-                                                size: 16),
+                                            child: FaIcon(FontAwesomeIcons.clock, size: 16),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    margin:
-                                        EdgeInsets.only(left: 8.r, top: 10.r),
-                                    child: Text(widget.data.description,
-                                        style: const TextStyle(
-                                            color: AppColors.darkGrean,
-                                            fontSize: 15)),
+                                    margin: EdgeInsets.only(left: 8.r, top: 10.r),
+                                    child: Text(widget.data.description, style: const TextStyle(color: AppColors.darkGrean, fontSize: 15)),
                                   ),
                                   Expanded(
                                     flex: 9,
                                     child: Visibility(
                                       visible: widget.data.audio.isNotEmpty,
                                       child: Container(
-                                        margin: EdgeInsets.only(
-                                            left: 8.r, top: 10.r),
-                                        child: Align(
-                                            child: Player(uri: widget.data.audio)),
+                                        margin: EdgeInsets.only(left: 8.r, top: 10.r),
+                                        child: Align(child: Player(uri: widget.data.audio)),
                                       ),
                                     ),
                                   ),

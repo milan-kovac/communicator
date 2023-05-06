@@ -384,5 +384,52 @@
       "image": "assets/images/learning/food/zucchini.png",
       "description": "Tikvice"
     }
+  ],
+  "numbers":[
+    {
+      "id": 2,
+      "image": "assets/images/learning/numbers/1.png",
+      "description": "Jedan"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/learning/numbers/2.png",
+      "description": "Dva"
+    },
+    {
+      "id": 4,
+      "image": "assets/images/learning/numbers/3.png",
+      "description": "Tri"
+    },
+    {
+      "id": 5,
+      "image": "assets/images/learning/numbers/4.png",
+      "description": "Četiri"
+    },
+    {
+      "id": 6,
+      "image": "assets/images/learning/numbers/5.png",
+      "description": "Pet"
+    },
+    {
+      "id": 7,
+      "image": "assets/images/learning/numbers/6.png",
+      "description": "Šest"
+    },
+    {
+      "id": 8,
+      "image": "assets/images/learning/numbers/7.png",
+      "description": "Sedam"
+    },
+    {
+      "id": 9,
+      "image": "assets/images/learning/numbers/8.png",
+      "description": "Osam"
+    },
+    {
+      "id": 10,
+      "image": "assets/images/learning/numbers/9.png",
+      "description": "Devet"
+    }
   ]
 }
