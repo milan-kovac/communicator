@@ -1,19 +1,14 @@
-import 'dart:math';
-
 import 'package:communicator/src/models/event.dart';
 import 'package:communicator/src/services/event.service.dart';
 import 'package:communicator/src/utils/app.color.dart';
 import 'package:communicator/src/widgets/calendar/add.event.button.dart';
 import 'package:communicator/src/widgets/calendar/calendar.event.dart';
-import 'package:communicator/src/widgets/calendar/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_event_calendar/flutter_event_calendar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/global/custom.app.bar.dart';
 import '../widgets/global/sidebar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});

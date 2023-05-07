@@ -23,10 +23,6 @@ class TtsService {
 
   Future initTts() async {
     await ftts.awaitSpeakCompletion(true);
-    var engines = await ftts.getEngines;
-    if (engines[0] != null) {
-      await ftts.setEngine(engines[0]);
-    }
     if (await ftts.isLanguageAvailable('sr')) {
       await ftts.setLanguage("sr");
       await ftts.setVoice({'name': 'sr', 'locale': 'sr'});

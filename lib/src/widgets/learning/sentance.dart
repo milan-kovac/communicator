@@ -1,4 +1,5 @@
 import 'package:communicator/src/bloc/sentence/sentence_bloc.dart';
+import 'package:communicator/src/services/tts.service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,11 +14,12 @@ class Sentance extends StatefulWidget {
 
 class _SentanceState extends State<Sentance> {
   final ScrollController controller = ScrollController();
+  bool isPlay = false;
   void animateScroll() {
     if (controller.hasClients) {
       controller.animateTo(
-        controller.position.maxScrollExtent + 80.w,
-        duration: const Duration(milliseconds: 500),
+        controller.position.maxScrollExtent + 85.w,
+        duration: const Duration(milliseconds: 700),
         curve: Curves.fastOutSlowIn,
       );
     }
@@ -73,7 +75,20 @@ class _SentanceState extends State<Sentance> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                const InkWell(child: FaIcon(FontAwesomeIcons.play)),
+                                InkWell(
+                                    onTap: () {
+                                      List<String> words = state.sentence.map((e) => e.description).toList();
+                                      String sentence = words.join(' ');
+                                      setState(() {
+                                        isPlay = !isPlay;
+                                      });
+                                      TtsService(text: sentence).startSpeech().then((value) => {
+                                            setState(() {
+                                              isPlay = !isPlay;
+                                            })
+                                          });
+                                    },
+                                    child: FaIcon(isPlay ? FontAwesomeIcons.pause : FontAwesomeIcons.play)),
                                 InkWell(
                                     onTap: () => BlocProvider.of<SentenceBloc>(context).add(RemoveSentenceEvent()),
                                     child: const FaIcon(FontAwesomeIcons.xmark))
@@ -88,7 +103,4 @@ class _SentanceState extends State<Sentance> {
       },
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
